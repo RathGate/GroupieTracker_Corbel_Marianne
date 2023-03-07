@@ -16,11 +16,21 @@
                 <label class="submit" for="submit-btn"><i class="fa-solid fa-arrow-right"></i></label><input type="submit" id="submit-btn" class="invisible-submit">
             </form>
         </div>
+        {{ if ne .PerfectMatch.Name ""}}
+        <div class="single-card">
+            <h1>Perfect match</h1>
+            {{ template "card" .PerfectMatch }}
+        </div>
+        {{ end }}
+        {{ if .ResultArr }}
+        <h1>All results</h1>
         <div class="card-container">
+            
             {{ range .ResultArr}}
-            {{ template "card" . }}
+                {{ template "card" . }}
             {{ end }}
         </div>
+        {{end}}
     </section>
 </body>
 </html>

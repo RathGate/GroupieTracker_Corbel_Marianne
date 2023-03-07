@@ -1,18 +1,37 @@
 package api
 
 import (
+	"encoding/json"
+	"os"
 	"reflect"
 	"sort"
+	"strings"
 )
 
-// func SearchByName(searchName string) {
-// 	full, err := MakeFullRequest()
-// 	if err != nil {
-// 		fmt.Println(err)
-// 		return
-// 	}
-
-// }
+func SearchByName(useFallback bool, searchName string, excludedId int) (result []Item, err error) {
+	var temp []Item
+	if !useFallback {
+		temp, err = MakeFullRequest()
+		if err != nil {
+			return nil, err
+		}
+	} else {
+		byteValue, err := os.ReadFile("assets/data/fallback.json")
+		if err != nil {
+			return nil, err
+		}
+		err = json.Unmarshal(byteValue, &temp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	for _, element := range temp {
+		if strings.Contains(element.Name, searchName) && element.ID != excludedId {
+			result = append(result, element)
+		}
+	}
+	return result, nil
+}
 
 // TODO: Clear the function (redundancy)
 // Flattens the multilevel FullRequest struct (see structs.go)
