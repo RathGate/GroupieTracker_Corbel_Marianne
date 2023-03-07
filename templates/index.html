@@ -17,8 +17,8 @@
             </form>
         </div>
         <div class="card-container">
-            {{ $range $index, $item .ResultArr}}
-                {{ template "card" $item }}
+            {{ range .ResultArr}}
+            {{ template "card" . }}
             {{ end }}
         </div>
     </section>
