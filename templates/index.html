@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <script src="https://kit.fontawesome.com/65cde144bd.js" crossorigin="anonymous"></script>
+    <title>Groupie Tracker</title>
+</head>
+<body>
+    <section>
+        <div class="request-form">
+            <form action="/" method="POST">
+                <label for="name"><input type="text" id="name" name="name" placeholder="What are you looking for?"></label>
+                <label class="submit" for="submit-btn"><i class="fa-solid fa-arrow-right"></i></label><input type="submit" id="submit-btn" class="invisible-submit">
+            </form>
+        </div>
+        <div class="card-container">
+            {{ $range $index, $item .ResultArr}}
+                {{ template "card" $item }}
+            {{ end }}
+        </div>
+    </section>
+</body>
+</html>
