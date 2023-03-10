@@ -16,11 +16,7 @@ func SearchByName(useFallback bool, searchName string, excludedId int) (result [
 			return nil, err
 		}
 	} else {
-		byteValue, err := os.ReadFile("assets/data/fallback.json")
-		if err != nil {
-			return nil, err
-		}
-		err = json.Unmarshal(byteValue, &temp)
+		temp, err = UseFallBack()
 		if err != nil {
 			return nil, err
 		}
@@ -31,6 +27,18 @@ func SearchByName(useFallback bool, searchName string, excludedId int) (result [
 		}
 	}
 	return result, nil
+}
+
+func UseFallBack() (temp []Item, err error) {
+	byteValue, err := os.ReadFile("assets/data/fallback.json")
+	if err != nil {
+		return nil, err
+	}
+	err = json.Unmarshal(byteValue, &temp)
+	if err != nil {
+		return nil, err
+	}
+	return temp, nil
 }
 
 // TODO: Clear the function (redundancy)

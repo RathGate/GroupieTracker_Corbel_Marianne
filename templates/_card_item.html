@@ -1,14 +1,15 @@
 {{ define "card" }}
 <div class="card-item">
-    <div class="card-header">
-        <img src="{{ .Image }}" alt="">
-    </div>
-    <div class="card-main">
-        <div class="card-title"> {{ .ID }} | {{ .Name }}</div>
-        <div class="card-tags-container">
-            <div class="card-tag-item">{{ .Category }}</div>
+    <div class="item-img-container">
+        <div class="item-img">
+            <img src="{{ .Image }}" alt="">
+            <div class="item-id">{{ .ID }}</div>
         </div>
-        <div class="card-description">{{ .Description }}</div>
+        <div class="img-frame"><img src="assets/img/img-background.png" alt=""></div>
+    </div>
+    <div class="card-title">
+        <span class="title-not-visible sheikah-font">Ratio</span>
+        <span class="title-visible">{{ .Name }}</span>
     </div>
 </div>
 {{ end }}

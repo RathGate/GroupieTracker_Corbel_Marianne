@@ -27,7 +27,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		tmpl.Execute(w, Data{DataType: "search", PerfectMatch: perfectMatch, ResultArr: allResults})
 		return
 	}
-	result, err := api.MakeFullRequest()
+	result, err := api.UseFallBack()
 	if err != nil {
 		fmt.Println(err)
 	}
