@@ -5,12 +5,13 @@
 
 .item-img-container {
     width: 100%;
+    max-width: 300px;
     aspect-ratio: 1;
     background-color: #131313;
     position: relative;
 }
 .item-img-container img {
-    max-width: 100%;
+    width: 100%;
     display: block;
 }
 .img-frame {
@@ -76,3 +77,11 @@
     font-size: 15px;
     color: white;
 }
+.neon-italic-text {
+    font-style: italic;
+    color: #7fe5ff;
+    text-shadow: 0px 0px 5px cyan;
+}
+
+/* TODO: REPONSIVE */
+/* !RESPONSIVE */

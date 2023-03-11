@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 @import url(cards.css);
 @import url(header.css);
+@import url(single-page.css);
+@import url(footer.css);
+@import url(scrollbars.css);
 
 @font-face {
     font-family: "Hylia";
@@ -12,6 +15,7 @@
 }
 
 :root {
+    --color-dark-gray: #131313;
     --color-beige: #fbf7dc;
     --color-gold: #b79c63;
 }
@@ -19,14 +23,53 @@
 * {
     box-sizing: border-box;
 }
+
+a {
+    text-decoration: none;
+    color: unset;
+}
 body, html {
     height: 100vh;
     width: 100%;
     margin: 0;
-    background-color: #131313;
-    color: #ececec;
-    font-family: "Open Sans",  sans-serif;
+
+    background-color: var(--color-dark-gray);
     background-image: url(../img/background.png);
+    font-family: "Open Sans",  sans-serif;
+    color: var(--color-beige);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+main {
+    padding: 80px 0 40px;
+    height: 100vh;
+    flex-shrink: 0;
+}
+
+/* *COMMON EFFECTS */
+
+.link-underline {
+    position: relative;
+    padding: 2px 0;
+}
+
+.link-underline::after {
+    content: "";
+    position: absolute;
+    
+    left: -1px;
+    bottom: 0px;
+    height: 1px;
+    width: 0px;
+    background-color: var(--color-beige);
+    transition: width .15s ease-in-out;
+}
+
+.link-underline:hover::after, .link-underline.active::after {
+    width: 100%;
 }
 
 /* .card-item {
@@ -189,6 +232,7 @@ h1{
     width: 90px;
     transition: .2s filter ease;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 .cat-icon:not(.active) {
     filter: brightness(70%);

@@ -2,33 +2,174 @@ header {
     position: fixed;
     height: 75px;
     width: 100%;
-    background-image: url(../img/background.png);
-    border-bottom: 2px solid cyan;
+    z-index: 50;
+    transition: height .2s ease-in-out;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* *VERTICAL NAV */
+
+nav {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    padding: 0 25px;
+
     display: flex;
     align-items: center;
-    padding: 0 25px;
-    z-index: 50;
     justify-content: space-between;
-    color: var(--color-gold);
+    
+    background-image: url(../img/background.png);
+    border-bottom: 2px solid cyan;
 }
+/* lEFT PART: Logo */
+
+.logo-wide {
+    height: 45px;
+    transition: height .2s ease-in-out;
+}
+
+.logo-small {
+    position: relative;
+    height: 28px;
+    display: none;
+}
+
+/* RIGHT PART: Links */
+
 .nav-links {
     display: flex;
-    font-size: 20px;
-    color: var(--color-beige);
-    text-shadow: 0px 0px 5px var(--color-beige);
     gap: 40px;
 }
+.nav-links a {
+    padding: 5px;
+}
+
 .nav-link {
-    padding: 3PX 10px;
-    /* background-color: var(--color-beige); */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0px 0px 5px var(--color-beige);
+    padding: 3px 10px;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
 }
-.nav-link.active {
-    text-decoration: underline;
-    text-underline-offset: 4px;
+
+
+.nav-links a:hover .link-underline::after {
+    width: 100%;
 }
-main {
-    padding-top: 80px;
+
+/* RIGHT PART: Burger menu icon */
+
+.nav-menu-icon {
+    font-size: 28px;
+    width:40px;
+    aspect-ratio: 1;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
-header img {
-    height: 45px;
+
+/* *BURGER MENU CONTENT */
+
+.mobile-menu {
+    position: absolute;
+    width: 100%;
+    padding: 40px 0 45px;
+    left: 0;
+    bottom: 0;
+    transform: translateY(0%);
+
+    display: none;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 35px;
+
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--color-beige);
+    z-index: -1;
+    transition: transform .2s ease-in-out;
+}
+
+.mobile-menu.visible {
+    transform: translateY(100%);
+}
+
+/* !RESPONSIVE */
+
+@media screen and (max-width:1250px) {
+    .logo-wide {
+        height: 38px;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    .nav-links .nav-link {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width:750px) {
+    nav {
+        padding: 0 10px 0 18px;
+    }
+    .nav-menu-icon {
+        display: flex;
+    }
+    .nav-links {
+        display: none;
+    }
+    .mobile-menu {
+        display: flex;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .nav-links {
+        max-width: 100%;
+    }
+    header {
+        height: 60px;
+    }
+    .logo-small {
+        display: block;
+    }
+    .logo-wide {
+        display: none;
+    }
+}
+
+/* Why would someone own a galaxy fold */
+@media screen and (max-width: 300px) {
+    header {
+        height: 55px;
+    }
+    nav {
+        padding: 0 12px 0 15px;
+    }
+    .nav-menu-icon {
+        font-size: 30px;
+    }
+    .logo-small {
+        height: 25px;
+    }
+    .footer-description {
+        font-size: 12px;
+    }
+    .footer-categories {
+        font-size: 11px;
+        gap: 20px;
+    }
+    .nav-menu-icon {
+        font-size: 25px;
+        width: 25px;
+    }
+    .mobile-menu {
+        font-size: 14px;
+        padding: 30px 0;
+        gap: 30px;
+    }
 }
