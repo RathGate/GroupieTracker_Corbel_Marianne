@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <script src="https://kit.fontawesome.com/65cde144bd.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <script src="https://kit.fontawesome.com/65cde144bd.js" crossorigin="anonymous"></script>
+    <title>Groupie Tracker</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-logo">
+                <img class="logo-wide" src="assets/img/logo_wide.png" alt="">
+                <img class="logo-small" src="assets/img/logo_small.png" alt="">
+            </div>
+            <div class="nav-menu-icon">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <div class="nav-links">
+                <a href="/"><div class="nav-link link-underline {{if eq .PageName "index"}}active{{end}}">Home</div></a>
+                <a href="/categories"><div class="nav-link link-underline {{if eq .PageName "categories"}}active{{end}}">Categories</div></a>
+                <a href="/search"><div class="nav-link link-underline {{if eq .PageName "search"}}active{{end}}">Search</div></a>
+            </div> 
+        </nav>
+        <div class="mobile-menu">
+            <a href="/"><div class="nav-link link-underline {{if eq .PageName "index"}}active{{end}}">Home</div></a>
+                <a href="/categories"><div class="nav-link link-underline {{if eq .PageName "categories"}}active{{end}}">Categories</div></a>
+                <a href="/search"><div class="nav-link link-underline {{if eq .PageName "search"}}active{{end}}">Search</div></a>
+        </div>
+  
+
+    </header>
+    <main>
+        <section>
+            {{ template "content" . }}
+        </section>    
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="assets/img/logo_wide.png" alt="Logo">
+            </div>
+            <div class="footer-description">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores, voluptate dolore, eligendi odit reiciendis aliquid quibusdam nulla doloremque cumque sapiente quo provident minima dolor esse est eos quas architecto saepe natus nihil temporibus sunt modi aperiam vitae. Ipsam, ea corporis.
+            </div>
+            <div class="footer-categories">
+                <a href="/"><div class="footer-link link-underline">Home</div></a>
+                <a href="/categories"><div class="footer-link link-underline">Categories</div></a>
+                <a href="/search"><div class="footer-link link-underline">Search</div></a>
+            </div>
+            <div class="copyright">(C) 2023 // Marianne Corbel</div>
+        </div>
+    </footer>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

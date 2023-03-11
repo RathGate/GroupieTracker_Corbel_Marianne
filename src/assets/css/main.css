@@ -1,23 +1,78 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url(cards.css);
+@import url(header.css);
+@import url(single-page.css);
+@import url(footer.css);
+@import url(scrollbars.css);
 
 @font-face {
     font-family: "Hylia";
     src: url(../fonts/HyliaSerif.ttf);
 }
+@font-face {
+    font-family: "Sheikah";
+    src: url(../fonts/botw-hylian.ttf);
+}
+
+:root {
+    --color-dark-gray: #131313;
+    --color-beige: #fbf7dc;
+    --color-gold: #b79c63;
+}
 
 * {
     box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: unset;
 }
 body, html {
     height: 100vh;
     width: 100%;
     margin: 0;
-    background-color: #131313;
-    color: #ececec;
+
+    background-color: var(--color-dark-gray);
+    background-image: url(../img/background.png);
     font-family: "Open Sans",  sans-serif;
+    color: var(--color-beige);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.card-item {
+main {
+    padding: 80px 0 40px;
+    height: 100vh;
+    flex-shrink: 0;
+}
+
+/* *COMMON EFFECTS */
+
+.link-underline {
+    position: relative;
+    padding: 2px 0;
+}
+
+.link-underline::after {
+    content: "";
+    position: absolute;
+    
+    left: -1px;
+    bottom: 0px;
+    height: 1px;
+    width: 0px;
+    background-color: var(--color-beige);
+    transition: width .15s ease-in-out;
+}
+
+.link-underline:hover::after, .link-underline.active::after {
+    width: 100%;
+}
+
+/* .card-item {
     height: 150px;
     max-height: 150px;
     width: 590px;
@@ -40,8 +95,7 @@ body, html {
 .card-header img {
     max-height: 100%;
     height: 100%;
-    width: 100%;
-    /* object-fit: cover; */
+    width: 100%; 
 }
 .card-main {
     padding: 10px 15px;
@@ -77,13 +131,16 @@ body, html {
     font-size: 14px;
     font-style: italic;
     opacity: .75;
-}
+} */
 
 section {
     width: 100%;
     padding: 0 25px;
-    max-width: 1250px;
+    max-width: 1650px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .request-form {
@@ -141,4 +198,45 @@ h1{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.sheikah-font {
+    text-transform: lowercase;
+    font-family: "Sheikah", sans-serif;
+}
+
+.cat-logo {
+    -webkit-filter: drop-shadow(0 5px #00ffffc4);
+  filter: drop-shadow(0 0 5px #00ffffc4);
+  height: 50px;
+}
+.cat-icons {
+    padding: 20px 0;
+    margin-bottom: 30px;
+    display: flex;
+    gap: 10px;
+    border-bottom: 1px solid rgba(0, 255, 255, 0.37);
+}
+.cat-title {
+    color: #7fe5ff;
+    text-shadow: 0px 0px 4px cyan;
+    font-style: italic;
+    flex-grow: 0;
+}
+.cat-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: 90px;
+    transition: .2s filter ease;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+.cat-icon:not(.active) {
+    filter: brightness(70%);
+}
+.cat-icon:hover {
+    filter: none;
 }

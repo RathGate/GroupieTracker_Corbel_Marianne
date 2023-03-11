@@ -1,0 +1,73 @@
+{{ define "single-page"}}
+    <div class="data-view-container">
+        <div class="data-header">
+            <div class="icon bookmark">
+                <i class="fa-regular fa-bookmark"></i>
+            </div>
+            <div class="title">
+                {{ .ID }} | {{.Name}}
+            </div>
+            <div class="icon quit"><i class="fa-solid fa-xmark"></i></div>
+        </div>
+        <div class="data-upper">
+            <div class="data-upper-left">
+                <div class="item-img-container">
+                    <div class="item-img">
+                        <img src="{{ .Image }}" alt="">
+                    </div>
+                    <div class="img-frame active"><img src="assets/img/img-background.png" alt=""></div>
+                </div>
+            </div>
+            <div class="data-upper-right">
+                <div class="item-description">
+                    <div class="single-title">
+                        <div class="title-deco neon-bg"></div>
+                        <h2 class="neon-italic-text">Description</h2>
+                        <div class="title-deco neon-bg"></div>
+                    </div>
+                        
+                    <div class="description-text neon-italic-text">{{.Description}}</div>
+                </div>
+                <div class="item-locations">
+                    <div class="single-title">
+                        <div class="title-deco neon-bg"></div>
+                        <h2 class="neon-italic-text">Common Locations</h2>
+                        <div class="title-deco neon-bg"></div>
+                    </div>
+                        
+                    <div class="description-text neon-italic-text">
+                        {{ if .CommonLocations }}
+                            {{ range .CommonLocations }}
+                            <p>{{ . }}</p>
+                            {{end }}
+                        {{ else }}
+                        None
+                        {{ end }}         
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="data-lower">
+            <div class="item-drops">
+                <div class="single-title">
+                    <div class="title-deco neon-bg"></div>
+                    <h2 class="neon-italic-text">Recoverable Materials</h2>
+                    <div class="title-deco neon-bg"></div>
+                </div>
+                    
+                <div class="description-text neon-italic-text">
+                    
+                    {{ if .Drops }}
+                    {{ range .Drops }}
+                    <div>{{ . }}</div>
+                    {{end }}
+                {{ else }}
+                <div class="none">None</div>
+                {{ end }}    
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+{{ end }}
