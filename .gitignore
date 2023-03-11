@@ -1,3 +1,4 @@
 tmp/
 assets/data/fallback.json
 templates/temp.html
+.vscode/
