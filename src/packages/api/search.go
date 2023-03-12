@@ -66,3 +66,15 @@ func FlattenFullRequest(request FullRequest) (resultArr []Item) {
 	})
 	return resultArr
 }
+
+func FlattenCreatureRequest(request CreaturesRequest) (resultArr []Item) {
+	var temp = request.Data
+	e := reflect.ValueOf(&temp).Elem()
+	for i := 1; i < e.NumField(); i++ {
+		resultArr = append(resultArr, e.Field(i).Interface().([]Item)...)
+	}
+	sort.Slice(resultArr, func(a, b int) bool {
+		return resultArr[a].ID < resultArr[b].ID
+	})
+	return resultArr
+}

@@ -31,7 +31,6 @@ function removeClassFromAll(divArr, className) {
 // Closes the details window when clicking on the closing cross.
 function addClosableListener() {
     var quits = document.querySelectorAll(".data-view-container")
-    console.log(quits)
     if (quits) {
         quits.forEach(element => {
             element.querySelector(".quit").addEventListener("click", function() {
@@ -47,8 +46,17 @@ addClosableListener()
 function switchCategories() {
     var categories = document.querySelectorAll(".cat-icon")
     if (categories) {
-        categories.forEach(element => {
+        categories.forEach((element, index) => {
             element.addEventListener("click", function() {
+                if (!element.classList.contains("active")) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/categories",
+                        data: { "category-id":  index},
+                        success: function(data) {
+                           document.querySelector(".cards-container").innerHTML = data
+                        }
+                    })}
                 removeClassFromAll(categories, "active")
                 element.classList.add("active")
             })

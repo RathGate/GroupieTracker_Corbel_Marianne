@@ -17,6 +17,13 @@ type CategoryRequest struct {
 	Items []Item `json:"data"`
 }
 
+type CreaturesRequest struct {
+	Data struct {
+		Food    []Item `json:"food"`
+		NonFood []Item `json:"non_food"`
+	} `json:"data"`
+}
+
 type EntryRequest struct {
 	Item Item `json:"data"`
 }

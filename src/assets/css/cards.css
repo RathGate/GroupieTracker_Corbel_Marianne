@@ -85,3 +85,9 @@
 
 /* TODO: REPONSIVE */
 /* !RESPONSIVE */
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}

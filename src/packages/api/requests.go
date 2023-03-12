@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"io"
 	"net/http"
+	"sort"
 )
 
 func MakeFullRequest() ([]Item, error) {
@@ -22,16 +23,29 @@ func MakeFullRequest() ([]Item, error) {
 	return FlattenFullRequest(temp), err
 }
 
-func MakeCategoryRequest(categoryName string) (result CategoryRequest, err error) {
+func MakeCategoryRequest(categoryName string) ([]Item, error) {
 	reqBody, status, err := MakeRequest("https://botw-compendium.herokuapp.com/api/v2/category/" + categoryName)
+
 	if status != http.StatusOK {
-		return result, nil
+		return []Item{}, nil
 	}
 	if err != nil {
-		return result, err
+		return nil, err
 	}
+
+	if categoryName == "creatures" {
+		var result CreaturesRequest
+		err = json.Unmarshal(reqBody, &result)
+		return FlattenCreatureRequest(result), err
+	}
+
+	var result CategoryRequest
+
 	err = json.Unmarshal(reqBody, &result)
-	return result, err
+	sort.Slice(result.Items, func(a, b int) bool {
+		return result.Items[a].ID < result.Items[b].ID
+	})
+	return result.Items, err
 }
 
 func MakeEntryRequest(entryName string) (result Item, err error) {
