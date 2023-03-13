@@ -30,7 +30,7 @@ func SearchByName(useFallback bool, searchName string, excludedId int) (result [
 }
 
 func UseFallBack() (temp []Item, err error) {
-	byteValue, err := os.ReadFile("/assets/data/fallback.json")
+	byteValue, err := os.ReadFile("assets/data/fallback.json")
 	if err != nil {
 		return nil, err
 	}
@@ -68,9 +68,10 @@ func FlattenFullRequest(request FullRequest) (resultArr []Item) {
 }
 
 func FlattenCreatureRequest(request CreaturesRequest) (resultArr []Item) {
+
 	var temp = request.Data
 	e := reflect.ValueOf(&temp).Elem()
-	for i := 1; i < e.NumField(); i++ {
+	for i := 0; i < e.NumField(); i++ {
 		resultArr = append(resultArr, e.Field(i).Interface().([]Item)...)
 	}
 	sort.Slice(resultArr, func(a, b int) bool {

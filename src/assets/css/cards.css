@@ -1,5 +1,5 @@
 .card-item {
-    width: 180px;
+    /* width: 180px; */
     cursor: pointer;
 }
 
@@ -40,9 +40,13 @@
 }
 .title-visible {
     display: none;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .title-not-visible {
     opacity: 0.3;
+    /* display: none; */
 }
 .card-item:hover .title-visible {
     display: block;
@@ -63,14 +67,15 @@
     justify-content: center;
     color: #7fe5ff;
     text-shadow: 0px 0px 5px cyan;
+    max-width: 100%;
     white-space: nowrap;
-    width: 100%;
 }
 .title-visible {
     text-transform: capitalize;
     font-style: italic;
     font-size: 15px;
     position: relative;
+    padding-right: 2px;
     top: 3px;
 }
 .title-not-visible {
@@ -87,7 +92,90 @@
 /* !RESPONSIVE */
 
 .cards-container {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
     gap: 20px;
 }
+
+@media screen and (max-width: 1250px) {
+    .cards-container {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+    .title-visible {
+        font-size: 14px;
+    }
+    .title-not-visible {
+        font-size: 14px;
+    }
+}
+@media screen and (max-width: 950px) {
+    .cards-container {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    .cat-icon {
+        width: 80px !important;
+        flex-grow: 0;
+    }
+    .cat-title {
+        font-size: 15px;
+    }
+}
+@media screen and (max-width: 750px) {
+    .cat-icon {
+        width: 75px !important;
+    }
+    .cat-title {
+        font-size: 14px !important;
+    }
+    .cat-logo {
+        height: 45px !important;
+    }
+    .title-visible {
+        font-size: 13px;
+    }
+    .title-not-visible {
+        font-size: 13px;
+    }
+    .item-id {
+        font-size: 14px;
+    }
+}
+@media screen and (max-width: 550px) {
+    .cards-container {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .cat-icon {
+        width: 50px !important;
+    }
+    .cat-title {
+        font-size: 12px !important;
+    }
+    .cat-logo {
+        height: 40px !important;
+    }
+    .cat-title {
+        display: none;
+    }
+    .item-id {
+        font-size: 12px;
+    }
+}
+@media screen and (max-width: 300px) {
+    .cards-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .cat-icon {
+        width: 40px !important;
+    }
+    .cat-logo {
+        height: 35px !important;
+    }
+    .title-visible {
+        font-size: 12px;
+    }
+    .title-not-visible {
+        font-size: 13px;
+    }
+}
+
+/* ? */

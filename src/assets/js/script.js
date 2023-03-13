@@ -24,6 +24,8 @@ function removeClassFromAll(divArr, className) {
     })
 }
 
+let currentPageIndex = 0
+
 // TODO ----------------------------------------|
 // TODO: Other files ---------------------------|
 // TODO ----------------------------------------|
@@ -41,6 +43,7 @@ function switchCategories() {
                         data: { "category-id":  index},
                         success: function(data) {
                            document.querySelector(".cards-container").innerHTML = data
+                           currentPageIndex = 0
                         }
                     })}
                 removeClassFromAll(categories, "active")

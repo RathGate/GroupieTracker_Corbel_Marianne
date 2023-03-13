@@ -27,6 +27,8 @@ func main() {
 	r.HandleFunc("/search", searchHandler)
 	r.HandleFunc("/categories", categoriesHandler)
 
+	fmt.Println(lastRequest)
+
 	// Launches the server:
 	preferredPort := ":8080"
 	fmt.Printf("Starting server at port %v\n", preferredPort)
