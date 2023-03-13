@@ -28,20 +28,6 @@ function removeClassFromAll(divArr, className) {
 // TODO: Other files ---------------------------|
 // TODO ----------------------------------------|
 
-// Closes the details window when clicking on the closing cross.
-function addClosableListener() {
-    var quits = document.querySelectorAll(".data-view-container")
-    if (quits) {
-        quits.forEach(element => {
-            element.querySelector(".quit").addEventListener("click", function() {
-                element.remove()
-            })
-        })
-    }
-}
-
-addClosableListener()
-
 // Switches the current category on click (category page only)
 function switchCategories() {
     var categories = document.querySelectorAll(".cat-icon")
@@ -65,3 +51,26 @@ function switchCategories() {
 }
 
 switchCategories()
+
+
+// !CARDS
+
+let cards = document.querySelectorAll(".card-item")
+console.log(cards)
+if (cards) {
+    cards.forEach(card => {
+        let id = card.querySelector(".item-id").innerHTML
+        card.addEventListener("click", function() {
+            $.ajax({
+                type: "POST",
+                url: "/categories",
+                data: { "item-id":  id},
+                success: function(data) {
+                    console.log("oui")
+                    // document.getElementById("test").innerHTML = data
+                    console.log(data)
+                }
+            })
+        })
+    })
+}

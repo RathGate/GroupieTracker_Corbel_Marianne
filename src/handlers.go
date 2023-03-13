@@ -7,6 +7,8 @@ import (
 	"net/http"
 	"strconv"
 	"text/template"
+
+	"github.com/gorilla/mux"
 )
 
 var damn = []string{"creatures", "monsters", "materials", "equipment", "treasure"}
@@ -15,6 +17,17 @@ var lastRequest []api.Item
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 	data := Data{PageName: "index"}
 	tmpl := template.Must(template.ParseFiles("templates/base.html", "templates/views/index.html"))
+	tmpl.Execute(w, data)
+}
+func itemHandler(w http.ResponseWriter, r *http.Request) {
+	id := mux.Vars(r)["id"]
+	item, err := api.MakeEntryRequest(id)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	data := Data{PageName: "item", PerfectMatch: item}
+	tmpl := template.Must(template.ParseFiles("templates/base.html", "templates/views/item.html", "templates/components/_single_page.html"))
 	tmpl.Execute(w, data)
 }
 func categoriesHandler(w http.ResponseWriter, r *http.Request) {

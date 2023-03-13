@@ -15,6 +15,6 @@ func GenerateFallback() error {
 	if err != nil {
 		return err
 	}
-	err = os.WriteFile("assets/data/fallback.json", file, 0644)
+	err = os.WriteFile("/assets/data/fallback.json", file, 0644)
 	return err
 }

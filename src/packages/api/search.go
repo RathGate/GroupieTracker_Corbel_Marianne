@@ -30,7 +30,7 @@ func SearchByName(useFallback bool, searchName string, excludedId int) (result [
 }
 
 func UseFallBack() (temp []Item, err error) {
-	byteValue, err := os.ReadFile("assets/data/fallback.json")
+	byteValue, err := os.ReadFile("/assets/data/fallback.json")
 	if err != nil {
 		return nil, err
 	}

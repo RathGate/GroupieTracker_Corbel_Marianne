@@ -5,6 +5,8 @@ import (
 	"groupie-tracker/packages/api"
 	"log"
 	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
 type Data struct {
@@ -15,18 +17,20 @@ type Data struct {
 }
 
 func main() {
-	static := http.FileServer(http.Dir("assets"))
-	http.Handle("/assets/", http.StripPrefix("/assets/", static))
+	r := mux.NewRouter()
 
+	// This will serve files under http://localhost:8000//assets/<filename>
+	r.PathPrefix("/assets/").Handler(http.StripPrefix("/assets/", http.FileServer(http.Dir("./assets"))))
 	// Handles routing:
-	http.HandleFunc("/", indexHandler)
-	http.HandleFunc("/search", searchHandler)
-	http.HandleFunc("/categories", categoriesHandler)
+	r.HandleFunc("/", indexHandler)
+	r.HandleFunc("/item/{id}", itemHandler)
+	r.HandleFunc("/search", searchHandler)
+	r.HandleFunc("/categories", categoriesHandler)
 
 	// Launches the server:
 	preferredPort := ":8080"
 	fmt.Printf("Starting server at port %v\n", preferredPort)
-	if err := http.ListenAndServe(preferredPort, nil); err != nil {
+	if err := http.ListenAndServe(preferredPort, r); err != nil {
 		log.Fatal(err)
 	}
 }
