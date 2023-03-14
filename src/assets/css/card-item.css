@@ -159,6 +159,17 @@
     .item-id {
         font-size: 12px;
     }
+    .title-not-visible {
+        display: none;
+    }
+    .title-visible {
+        display: block;
+        filter: grayscale(100%) brightness(60%);
+        transition: .2s ease;
+    }
+    .card-item:hover .title-visible {
+        filter: none;
+    }
 }
 @media screen and (max-width: 300px) {
     .cards-container {
@@ -170,12 +181,7 @@
     .cat-logo {
         height: 35px !important;
     }
-    .title-visible {
-        font-size: 12px;
-    }
-    .title-not-visible {
-        font-size: 13px;
-    }
+
 }
 
 /* ? */

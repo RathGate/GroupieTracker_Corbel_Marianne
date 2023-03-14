@@ -44,7 +44,7 @@ func itemHandler(w http.ResponseWriter, r *http.Request) {
 
 	data := Data{PageName: lastPage, PerfectMatch: item}
 
-	tmpl := template.Must(template.ParseFiles("templates/base.html", "templates/views/item.html", "templates/components/_single_page.html"))
+	tmpl := template.Must(template.ParseFiles("templates/base.html", "templates/views/item.html", "templates/components/entry-item.html"))
 	tmpl.Execute(w, data)
 }
 func categoriesHandler(w http.ResponseWriter, r *http.Request) {
@@ -65,7 +65,7 @@ func categoriesHandler(w http.ResponseWriter, r *http.Request) {
 				return
 			}
 
-			tmpl, _ := template.New("").ParseFiles("templates/components/_card_item.html")
+			tmpl, _ := template.New("").ParseFiles("templates/components/card-item.html")
 
 			err = tmpl.ExecuteTemplate(w, "card", temp)
 
@@ -87,7 +87,7 @@ func categoriesHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	data.ResultArr = temp
-	tmpl := template.Must(template.ParseFiles("templates/base.html", "templates/views/categories.html", "templates/components/_card_item.html"))
+	tmpl := template.Must(template.ParseFiles("templates/base.html", "templates/views/categories.html", "templates/components/card-item.html"))
 	tmpl.Execute(w, data)
 
 	fmt.Println(len(lastRequest.AllResults))
@@ -115,4 +115,12 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("templates/base.html", "templates/views/search.html"))
 	tmpl.Execute(w, data)
 	fmt.Println(len(lastRequest.AllResults))
+}
+
+func notFoundHandler(w http.ResponseWriter, r *http.Request) {
+	lastPage = "404"
+	data := Data{PageName: lastPage}
+
+	tmpl := template.Must(template.ParseFiles("templates/base.html", "templates/views/index.html"))
+	tmpl.Execute(w, data)
 }

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
-@import url(cards.css);
+@import url(card-item.css);
 @import url(header.css);
-@import url(single-page.css);
+@import url(entry-item.css);
 @import url(footer.css);
 @import url(scrollbars.css);
 
@@ -44,7 +44,7 @@ body, html {
 }
 
 main {
-    padding: 80px 0 40px;
+    padding-top: 75px;
     flex-shrink: 0;
     flex: 1;
 }
@@ -136,7 +136,7 @@ main {
 section {
     width: 100%;
     height: 100%;
-    padding: 0 25px;
+    padding: 40px 25px;
     max-width: 1650px;
     margin: 0 auto;
     display: flex;
@@ -211,7 +211,7 @@ h1{
   filter: drop-shadow(0 0 5px #00ffffc4);
   height: 50px;
 }
-.cat-icons {
+.cat-icon-container {
     padding: 20px 0;
     margin-bottom: 30px;
     display: flex;
@@ -240,4 +240,20 @@ h1{
 }
 .cat-icon:hover {
     filter: none;
+}
+
+@media screen and (max-width: 550px) {
+    main {
+        padding-top: 60px;
+    }
+    /* section {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    } */
+}
+@media screen and (max-width: 300px) {
+    section {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
 }

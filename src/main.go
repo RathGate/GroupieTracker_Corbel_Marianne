@@ -19,16 +19,14 @@ type Data struct {
 func main() {
 	r := mux.NewRouter()
 
-	// This will serve files under http://localhost:8000//assets/<filename>
+	// This will serve files under http://localhost:8000/assets/<filename>
 	r.PathPrefix("/assets/").Handler(http.StripPrefix("/assets/", http.FileServer(http.Dir("./assets"))))
 	// Handles routing:
 	r.HandleFunc("/", indexHandler)
 	r.HandleFunc("/item/{id}", itemHandler)
 	r.HandleFunc("/search", searchHandler)
 	r.HandleFunc("/categories", categoriesHandler)
-
-	fmt.Println(lastRequest)
-
+	r.NotFoundHandler = http.HandlerFunc(notFoundHandler)
 	// Launches the server:
 	preferredPort := ":8080"
 	fmt.Printf("Starting server at port %v\n", preferredPort)
