@@ -1,30 +1,33 @@
-{{ define "content" }}
-<div class="cat-icon-container">
-    <div class="cat-icon active">
-        <div class="cat-title">Creatures</div>
-        <img class="cat-logo" src="/assets/img/category_icons/creatures.png" alt="">
+{{ define "main" }}
+<section>
+    <div class="cat-icon-container">
+        <div class="cat-icon active">
+            <div class="cat-title">Creatures</div>
+            <img class="cat-logo" src="/assets/img/category_icons/creatures.png" alt="">
+    
+        </div>
+        <div class="cat-icon">
+            <div class="cat-title">Monsters</div>
+            <img class="cat-logo" src="/assets/img/category_icons/monsters.png" alt="">
+        </div>
+        <div class="cat-icon">
+            <div class="cat-title">Food</div>
+            <img class="cat-logo" src="/assets/img/category_icons/food.png" alt="">
+    
+        </div>
+        <div class="cat-icon">
+            <div class="cat-title">Weapons</div>
+            <img class="cat-logo" src="/assets/img/category_icons/swords.png" alt="">
+        </div>
+        <div class="cat-icon">
+            <div class="cat-title">Treasures</div>
+            <img class="cat-logo" src="/assets/img/category_icons/treasures.png" alt="">
+        </div>
+    </div>
+    <div class="cards-container">
+        {{template "card" .ResultArr}}
+    </div>
+</section>
 
-    </div>
-    <div class="cat-icon">
-        <div class="cat-title">Monsters</div>
-        <img class="cat-logo" src="/assets/img/category_icons/monsters.png" alt="">
-    </div>
-    <div class="cat-icon">
-        <div class="cat-title">Food</div>
-        <img class="cat-logo" src="/assets/img/category_icons/food.png" alt="">
-
-    </div>
-    <div class="cat-icon">
-        <div class="cat-title">Weapons</div>
-        <img class="cat-logo" src="/assets/img/category_icons/swords.png" alt="">
-    </div>
-    <div class="cat-icon">
-        <div class="cat-title">Treasures</div>
-        <img class="cat-logo" src="/assets/img/category_icons/treasures.png" alt="">
-    </div>
-</div>
-<div class="cards-container">
-    {{template "card" .ResultArr}}
-</div>
 
 {{ end }}
