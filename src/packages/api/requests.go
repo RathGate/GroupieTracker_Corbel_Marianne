@@ -7,9 +7,27 @@ import (
 	"sort"
 )
 
-func MakeFullRequest() ([]Item, error) {
+func MakeFullRequest(mastermode bool) (result []Item, err error) {
 	var temp FullRequest
+	var accessory CategoryRequest
+	if mastermode {
+		reqBody, status, err := MakeRequest("https://botw-compendium.herokuapp.com/api/v2/master_mode/all")
+
+		if status != http.StatusOK {
+			return []Item{}, nil
+		}
+		if err != nil {
+			return nil, err
+		}
+
+		err = json.Unmarshal(reqBody, &accessory)
+		if err != nil {
+			return nil, err
+		}
+	}
+
 	reqBody, status, err := MakeRequest("https://botw-compendium.herokuapp.com/api/v2/all")
+
 	if status != http.StatusOK {
 		return []Item{}, nil
 	}
@@ -20,6 +38,7 @@ func MakeFullRequest() ([]Item, error) {
 	if err != nil {
 		return nil, err
 	}
+	temp.Data.Monsters = append(temp.Data.Monsters, accessory.Items...)
 	return FlattenFullRequest(temp), err
 }
 

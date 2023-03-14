@@ -1,5 +1,26 @@
 {{ define "main"}}
 <section>
-    Ah
+    <div class="request-form">
+        <form action="/search" method="POST">
+            <label for="name"><input type="text" id="name" name="name" placeholder="What are you looking for?"></label>
+            <label class="submit" for="submit-btn"><i class="fa-solid fa-arrow-right"></i></label><input type="submit" id="submit-btn" class="invisible-submit">
+        </form>
+    </div>
+    {{ if ne .PerfectMatch.Name ""}}
+    <h1>Perfect match</h1>
+    <div class="cards-container">
+        
+        {{ template "card" .PerfectMatch }}
+    </div>
+    {{ end }}
+    {{ if .ResultArr }}
+    <h1>All results</h1>
+    <div class="cards-container">
+        
+        {{ range .ResultArr}}
+            {{ template "card" . }}
+        {{ end }}
+    </div>
+    {{ end }}
 </section>
 {{ end }}

@@ -64,19 +64,23 @@ func categoriesHandler(w http.ResponseWriter, r *http.Request) {
 				println(err)
 				return
 			}
+			for i, v := range temp {
+				fmt.Println(i, v.Name, v.ID)
+			}
+			tmpl, err := template.New("").ParseFiles("templates/components/card-item-container.html", "templates/components/card-item.html")
+			fmt.Println(err)
 
-			tmpl, _ := template.New("").ParseFiles("templates/components/card-item.html")
-
-			err = tmpl.ExecuteTemplate(w, "card", temp)
+			err = tmpl.ExecuteTemplate(w, "card-container", temp)
 
 			if err != nil {
+				fmt.Println(err)
 				panic(err)
 			}
 			lastRequest.updateRequest("idk", temp)
 			return
 		}
 	}
-	temp, err := api.MakeCategoryRequest("creatures")
+	temp, err := api.MakeCategoryRequest("creature")
 	if err != nil {
 		println(err)
 		return
@@ -103,7 +107,7 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		data.PerfectMatch = perfectMatch
 		data.ResultArr = allResults
-		tmpl := template.Must(template.ParseFiles("templates/base.html", "templates/views/search.html"))
+		tmpl := template.Must(template.ParseFiles("templates/base.html", "templates/views/search.html", "templates/components/card-item.html"))
 		tmpl.Execute(w, data)
 		return
 	}
@@ -112,7 +116,7 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 	}
 	data.ResultArr = result
-	tmpl := template.Must(template.ParseFiles("templates/base.html", "templates/views/search.html"))
+	tmpl := template.Must(template.ParseFiles("templates/base.html", "templates/views/search.html", "templates/components/card-item.html"))
 	tmpl.Execute(w, data)
 	fmt.Println(len(lastRequest.AllResults))
 }

@@ -27,6 +27,13 @@ func main() {
 	r.HandleFunc("/search", searchHandler)
 	r.HandleFunc("/categories", categoriesHandler)
 	r.NotFoundHandler = http.HandlerFunc(notFoundHandler)
+
+	// filters := Filters{Name: "lynel", Regions: []string{}, Category: []string{"monsters"}, MasterMode: true}
+	// result := applyFilters(filters)
+	// for _, value := range result {
+	// 	fmt.Printf("%v : %v\n", value.Name, value.Category)
+	// }
+	GenerateMMFallback()
 	// Launches the server:
 	preferredPort := ":8080"
 	fmt.Printf("Starting server at port %v\n", preferredPort)

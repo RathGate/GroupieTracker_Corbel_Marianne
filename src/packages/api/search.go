@@ -11,7 +11,7 @@ import (
 func SearchByName(useFallback bool, searchName string, excludedId int) (result []Item, err error) {
 	var temp []Item
 	if !useFallback {
-		temp, err = MakeFullRequest()
+		temp, err = MakeFullRequest(false)
 		if err != nil {
 			return nil, err
 		}

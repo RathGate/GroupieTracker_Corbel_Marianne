@@ -1,6 +1,5 @@
 {{ define "card" }}
-{{ range . }}
-<a href="/item/{{ .ID }}">
+<a href="/item/{{ $.ID }}">
     <div class="card-item">
         <div class="item-img-container">
             <div class="item-img">
@@ -15,5 +14,4 @@
         </div>
     </div>
 </a>
-{{end}}
 {{ end }}

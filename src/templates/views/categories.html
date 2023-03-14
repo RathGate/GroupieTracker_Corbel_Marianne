@@ -25,7 +25,10 @@
         </div>
     </div>
     <div class="cards-container">
-        {{template "card" .ResultArr}}
+        {{ range .ResultArr}}
+            {{template "card" .}}
+        {{ end }}
+        
     </div>
 </section>
 

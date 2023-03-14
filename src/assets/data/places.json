@@ -1,0 +1,59 @@
+{
+    "All": [
+        "Greater Hyrule"
+    ],
+    "Akkala": [
+        "Akkala Highlands", 
+        "Deep Akkala", 
+        "Akkala Sea"
+    ], 
+    "Central Hyrule": [
+        "Hyrule Field",
+        "Satori Mountain",
+        "Hyrule Ridge",
+        "Great Hyrule Forest",
+        "Kakariko Village", 
+        "Crenel Peak",
+        "Seres Scablands",
+        "Hyrule Castle",
+        "Lake Hylia"
+    ], 
+    "Eldin": [
+        "Eldin Canyon",
+        "Divine Beast Vah Rudania",
+        "Eldin Mountains",
+        "Death Mountain"
+    ],
+    "Faron": [
+        "Faron",
+        "Faron Grasslands"
+    ],
+    "Gerudo": [
+        "Gerudo Desert", 
+        "Yiga Clan Hideout",  
+        "Gerudo Town",
+        "Divine Beast Vah Naboris", 
+        "Gerudo Highlands"
+    ], 
+    "Hebra": [
+        "Hebra Mountains", 
+        "Tabantha Frontier", 
+        "Rito Stable", 
+        "Divine Beast Vah Medoh"
+
+    ], 
+    "Lanayru": [
+        "Lanayru Great Spring", 
+        "Lanayru Sea", 
+        "Mount Lanayru", 
+        "Lanayru Wetlands"
+    ], 
+    "Necluda": [
+        "West Necluda",
+        "East Necluda",
+        "Floria Bridge",
+        "Necluda Sea", 
+        "Lake Floria",
+        "Divine Beast Vah Ruta"
+    ]
+}

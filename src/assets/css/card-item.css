@@ -25,6 +25,8 @@
 }
 .item-img {
     position: relative;
+    width: 100%;
+    aspect-ratio: 1;
 }
 .item-id {
     position: absolute;
