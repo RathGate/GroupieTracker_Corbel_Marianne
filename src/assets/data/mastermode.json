@@ -2285,6 +2285,24 @@
    {
       "attack": 0,
       "category": "monsters",
+      "common_locations": null,
+      "cooking_effect": "",
+      "Food": false,
+      "hearts_recovered": 0,
+      "description": "With brutal strength and extreme resilience, this type of Lynel somehow surpasses Silver Lynels in sheer power. It is said they are actually Silver Lynels who mysteriously transformed after being struck by lightning. If you see one, get away as fast as you can.",
+      "drops": [
+         "lynel horn",
+         "lynel hoof",
+         "lynel guts",
+         "treasures"
+      ],
+      "id": 130,
+      "image": "https://botw-compendium.herokuapp.com/api/v2/master_mode/entry/golden_lynel/image",
+      "name": "golden lynel"
+   },
+   {
+      "attack": 0,
+      "category": "monsters",
       "common_locations": [
          "Hyrule Field",
          "Akkala Highlands"
@@ -2301,27 +2319,9 @@
          "ancient core",
          "giant ancient core"
       ],
-      "id": 130,
+      "id": 131,
       "image": "https://botw-compendium.herokuapp.com/api/v2/entry/guardian_skywatcher/image",
       "name": "guardian skywatcher"
-   },
-   {
-      "attack": 0,
-      "category": "monsters",
-      "common_locations": null,
-      "cooking_effect": "",
-      "Food": false,
-      "hearts_recovered": 0,
-      "description": "With brutal strength and extreme resilience, this type of Lynel somehow surpasses Silver Lynels in sheer power. It is said they are actually Silver Lynels who mysteriously transformed after being struck by lightning. If you see one, get away as fast as you can.",
-      "drops": [
-         "lynel horn",
-         "lynel hoof",
-         "lynel guts",
-         "treasures"
-      ],
-      "id": 131,
-      "image": "https://botw-compendium.herokuapp.com/api/v2/master_mode/entry/golden_lynel/image",
-      "name": "golden lynel"
    },
    {
       "attack": 0,

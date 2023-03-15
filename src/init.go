@@ -6,7 +6,6 @@ import (
 	"groupie-tracker/packages/api"
 	"net/http"
 	"os"
-	"strings"
 )
 
 type Places struct {
@@ -77,6 +76,9 @@ func Fill() (temp map[string][]string, err error) {
 }
 
 func stringInSlice(a string, list []string) bool {
+	if len(list) == 0 {
+		return true
+	}
 	for _, b := range list {
 		if b == a {
 			return true
@@ -105,24 +107,4 @@ type Filters struct {
 	Regions    []string
 	Category   []string
 	MasterMode bool
-}
-
-func applyFilters(filters Filters) (result []api.Item) {
-	var allitems []api.Item
-	var err error
-	if !filters.MasterMode {
-		allitems, _ = api.UseFallBack()
-	} else {
-		allitems, err = api.MakeFullRequest(true)
-		if err != nil {
-			fmt.Println(err)
-		}
-	}
-
-	for _, item := range allitems {
-		if strings.Contains(item.Name, filters.Name) && isInRegion(filters.Regions, item) && stringInSlice(item.Category, filters.Category) {
-			result = append(result, item)
-		}
-	}
-	return result
 }

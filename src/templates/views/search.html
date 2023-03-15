@@ -4,6 +4,21 @@
         <form action="/search" method="POST">
             <label for="name"><input type="text" id="name" name="name" placeholder="What are you looking for?"></label>
             <label class="submit" for="submit-btn"><i class="fa-solid fa-arrow-right"></i></label><input type="submit" id="submit-btn" class="invisible-submit">
+            <div>
+                <div>
+                    Regions:
+                    {{ range .Regions }}
+                    <label for="{{ . }}"><input type="checkbox" id="{{.}}" name="region" value="{{.}}">{{.}}</label>
+                    {{ end }}    
+                </div>
+                <div><label for="mastermode">Mastermode: <input type="checkbox" id="mastermode" name="mastermode"></label></div>
+                <div>
+                    Categories:
+                    {{ range .Categories }}
+                    <label for="{{ . }}"><input type="checkbox" id="{{.}}" name="category" value="{{.}}">{{.}}</label>
+                    {{ end }}
+                </div>
+            </div>
         </form>
     </div>
     {{ if ne .PerfectMatch.Name ""}}

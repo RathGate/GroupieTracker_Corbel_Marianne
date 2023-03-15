@@ -5,6 +5,7 @@ import (
 	"groupie-tracker/packages/api"
 	"log"
 	"net/http"
+	"strings"
 
 	"github.com/gorilla/mux"
 )
@@ -14,7 +15,11 @@ type Data struct {
 	DataType     string
 	PerfectMatch api.Item
 	ResultArr    []api.Item
+	Regions      []string
+	Categories   []string
 }
+
+var REGIONS_NAMES = []string{"Akkala", "Central Hyrule", "Eldin", "Faron", "Gerudo", "Hebra", "Lanayru", "Necluda"}
 
 func main() {
 	r := mux.NewRouter()
@@ -28,16 +33,31 @@ func main() {
 	r.HandleFunc("/categories", categoriesHandler)
 	r.NotFoundHandler = http.HandlerFunc(notFoundHandler)
 
-	// filters := Filters{Name: "lynel", Regions: []string{}, Category: []string{"monsters"}, MasterMode: true}
-	// result := applyFilters(filters)
-	// for _, value := range result {
-	// 	fmt.Printf("%v : %v\n", value.Name, value.Category)
-	// }
-	GenerateMMFallback()
 	// Launches the server:
 	preferredPort := ":8080"
 	fmt.Printf("Starting server at port %v\n", preferredPort)
 	if err := http.ListenAndServe(preferredPort, r); err != nil {
 		log.Fatal(err)
 	}
+}
+
+func applyFilters(filters Filters) (result []api.Item) {
+	var allitems []api.Item
+	var err error
+	if !filters.MasterMode {
+		allitems, _ = api.UseFallBack()
+	} else {
+		allitems, err = api.MakeFullRequest(true)
+		if err != nil {
+			fmt.Println(err)
+		}
+	}
+
+	for _, item := range allitems {
+		fmt.Println(strings.Contains(item.Name, filters.Name))
+		if strings.Contains(item.Name, filters.Name) && isInRegion(filters.Regions, item) && stringInSlice(item.Category, filters.Category) {
+			result = append(result, item)
+		}
+	}
+	return result
 }
