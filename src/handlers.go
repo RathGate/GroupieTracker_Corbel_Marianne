@@ -80,7 +80,7 @@ func categoriesHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
-	temp, err := api.MakeCategoryRequest("creature")
+	temp, err := api.MakeCategoryRequest("creatures")
 	if err != nil {
 		println(err)
 		return

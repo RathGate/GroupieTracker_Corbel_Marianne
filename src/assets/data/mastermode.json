@@ -1984,24 +1984,6 @@
    {
       "attack": 0,
       "category": "monsters",
-      "common_locations": null,
-      "cooking_effect": "",
-      "Food": false,
-      "hearts_recovered": 0,
-      "description": "With brutal strength and extreme resilience, this type of Moblin somehow surpasses Silver Moblins in sheer power. It is said they are actually Silver Moblins who mysteriously transformed after being struck by lightning. Perhaps that is why they have such a high tolerance for electric attacks.",
-      "drops": [
-         "moblin horn",
-         "moblin fang",
-         "moblin guts",
-         "treasures"
-      ],
-      "id": 115,
-      "image": "https://botw-compendium.herokuapp.com/api/v2/master_mode/entry/golden_moblin/image",
-      "name": "golden moblin"
-   },
-   {
-      "attack": 0,
-      "category": "monsters",
       "common_locations": [
          "Lanayru Great Spring",
          "Gerudo Desert"
@@ -2014,9 +1996,27 @@
          "lizalfos horn",
          "lizalfos talon"
       ],
-      "id": 116,
+      "id": 115,
       "image": "https://botw-compendium.herokuapp.com/api/v2/entry/lizalfos/image",
       "name": "lizalfos"
+   },
+   {
+      "attack": 0,
+      "category": "monsters",
+      "common_locations": null,
+      "cooking_effect": "",
+      "Food": false,
+      "hearts_recovered": 0,
+      "description": "With brutal strength and extreme resilience, this type of Moblin somehow surpasses Silver Moblins in sheer power. It is said they are actually Silver Moblins who mysteriously transformed after being struck by lightning. Perhaps that is why they have such a high tolerance for electric attacks.",
+      "drops": [
+         "moblin horn",
+         "moblin fang",
+         "moblin guts",
+         "treasures"
+      ],
+      "id": 116,
+      "image": "https://botw-compendium.herokuapp.com/api/v2/master_mode/entry/golden_moblin/image",
+      "name": "golden moblin"
    },
    {
       "attack": 0,
@@ -2183,24 +2183,6 @@
    {
       "attack": 0,
       "category": "monsters",
-      "common_locations": null,
-      "cooking_effect": "",
-      "Food": false,
-      "hearts_recovered": 0,
-      "description": "With brutal strength and extreme resilience, this type of Lizalfos somehow surpasses Silver Lizalfos in sheer power. It is said they are actually Silver Lizalfos who mysteriously transformed after being struck by lightning. Perhaps that is why they have such a high tolerance for electric attacks.",
-      "drops": [
-         "lizalfos horn",
-         "lizalfos talon",
-         "lizalfos tail",
-         "treasures"
-      ],
-      "id": 125,
-      "image": "https://botw-compendium.herokuapp.com/api/v2/master_mode/entry/golden_lizalfos/image",
-      "name": "golden lizalfos"
-   },
-   {
-      "attack": 0,
-      "category": "monsters",
       "common_locations": [
          "Hyrule Field",
          "Deep Akkala"
@@ -2214,9 +2196,27 @@
          "lynel hoof",
          "lynel guts"
       ],
-      "id": 126,
+      "id": 125,
       "image": "https://botw-compendium.herokuapp.com/api/v2/entry/blue-maned_lynel/image",
       "name": "blue-maned lynel"
+   },
+   {
+      "attack": 0,
+      "category": "monsters",
+      "common_locations": null,
+      "cooking_effect": "",
+      "Food": false,
+      "hearts_recovered": 0,
+      "description": "With brutal strength and extreme resilience, this type of Lizalfos somehow surpasses Silver Lizalfos in sheer power. It is said they are actually Silver Lizalfos who mysteriously transformed after being struck by lightning. Perhaps that is why they have such a high tolerance for electric attacks.",
+      "drops": [
+         "lizalfos horn",
+         "lizalfos talon",
+         "lizalfos tail",
+         "treasures"
+      ],
+      "id": 126,
+      "image": "https://botw-compendium.herokuapp.com/api/v2/master_mode/entry/golden_lizalfos/image",
+      "name": "golden lizalfos"
    },
    {
       "attack": 0,
@@ -2285,24 +2285,6 @@
    {
       "attack": 0,
       "category": "monsters",
-      "common_locations": null,
-      "cooking_effect": "",
-      "Food": false,
-      "hearts_recovered": 0,
-      "description": "With brutal strength and extreme resilience, this type of Lynel somehow surpasses Silver Lynels in sheer power. It is said they are actually Silver Lynels who mysteriously transformed after being struck by lightning. If you see one, get away as fast as you can.",
-      "drops": [
-         "lynel horn",
-         "lynel hoof",
-         "lynel guts",
-         "treasures"
-      ],
-      "id": 130,
-      "image": "https://botw-compendium.herokuapp.com/api/v2/master_mode/entry/golden_lynel/image",
-      "name": "golden lynel"
-   },
-   {
-      "attack": 0,
-      "category": "monsters",
       "common_locations": [
          "Hyrule Field",
          "Akkala Highlands"
@@ -2319,9 +2301,27 @@
          "ancient core",
          "giant ancient core"
       ],
-      "id": 131,
+      "id": 130,
       "image": "https://botw-compendium.herokuapp.com/api/v2/entry/guardian_skywatcher/image",
       "name": "guardian skywatcher"
+   },
+   {
+      "attack": 0,
+      "category": "monsters",
+      "common_locations": null,
+      "cooking_effect": "",
+      "Food": false,
+      "hearts_recovered": 0,
+      "description": "With brutal strength and extreme resilience, this type of Lynel somehow surpasses Silver Lynels in sheer power. It is said they are actually Silver Lynels who mysteriously transformed after being struck by lightning. If you see one, get away as fast as you can.",
+      "drops": [
+         "lynel horn",
+         "lynel hoof",
+         "lynel guts",
+         "treasures"
+      ],
+      "id": 131,
+      "image": "https://botw-compendium.herokuapp.com/api/v2/master_mode/entry/golden_lynel/image",
+      "name": "golden lynel"
    },
    {
       "attack": 0,
