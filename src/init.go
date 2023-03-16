@@ -92,9 +92,13 @@ func isInRegion(areas []string, item api.Item) bool {
 		return true
 	}
 	for _, area := range areas {
-		for _, location := range item.CommonLocations {
-			if stringInSlice(location, allregions[area]) {
-				return true
+		if region, ok := allregions[area]; !ok {
+			continue
+		} else {
+			for _, location := range item.CommonLocations {
+				if stringInSlice(location, region) {
+					return true
+				}
 			}
 		}
 	}
