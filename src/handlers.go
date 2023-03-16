@@ -40,7 +40,6 @@ func itemHandler(w http.ResponseWriter, r *http.Request) {
 	id := mux.Vars(r)["id"]
 
 	if _, err := strconv.Atoi(id); err != nil {
-		w.WriteHeader(404)
 		notFoundHandler(w, r)
 		return
 	}
@@ -48,7 +47,6 @@ func itemHandler(w http.ResponseWriter, r *http.Request) {
 	request, err := api.MakeEntryRequest(id)
 
 	if err != nil || request.Name == "" {
-		w.WriteHeader(404)
 		notFoundHandler(w, r)
 		return
 	}
