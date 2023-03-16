@@ -29,6 +29,7 @@ func main() {
 	r.PathPrefix("/assets/").Handler(http.StripPrefix("/assets/", http.FileServer(http.Dir("./assets"))))
 	// Handles routing:
 	r.HandleFunc("/", indexHandler)
+	r.HandleFunc("/test", testHandler)
 	r.HandleFunc("/item/{id}", itemHandler)
 	r.HandleFunc("/search", searchHandler)
 	r.HandleFunc("/categories", categoriesHandler)

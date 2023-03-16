@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"net/url"
+	"regexp"
 	"strconv"
 	"strings"
 	"text/template"
@@ -38,6 +39,26 @@ func itemHandler(w http.ResponseWriter, r *http.Request) {
 	lastPage = "item"
 
 	id := mux.Vars(r)["id"]
+	item, err := api.MakeEntryRequest(id)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	data := Data{PageName: lastPage, PerfectMatch: item}
+
+	tmpl := template.Must(template.ParseFiles("templates/base.html", "templates/views/item.html", "templates/components/entry-item.html"))
+	tmpl.Execute(w, data)
+}
+func testHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(r.URL.RequestURI())
+	reg := regexp.MustCompile(`\/test\?id=(?P<id>\d+)`)
+	fmt.Println(reg.MatchString(r.URL.RequestURI()))
+	//? if !reg.MatchString(r.URL.RequestURI()) {
+	//! 	404
+	//? }
+	id := reg.FindStringSubmatch(r.URL.RequestURI())[1]
+
 	item, err := api.MakeEntryRequest(id)
 	if err != nil {
 		fmt.Println(err)
