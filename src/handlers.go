@@ -38,16 +38,25 @@ func itemHandler(w http.ResponseWriter, r *http.Request) {
 	lastPage = "item"
 
 	id := mux.Vars(r)["id"]
-	item, err := api.MakeEntryRequest(id)
-	if err != nil {
-		fmt.Println(err)
+
+	if _, err := strconv.Atoi(id); err != nil {
+		w.WriteHeader(404)
+		notFoundHandler(w, r)
 		return
 	}
 
-	data := Data{PageName: lastPage, PerfectMatch: item}
+	request, err := api.MakeEntryRequest(id)
+
+	if err != nil || request.Name == "" {
+		w.WriteHeader(404)
+		notFoundHandler(w, r)
+		return
+	}
+	data := Data{PageName: lastPage, PerfectMatch: request}
 
 	tmpl := template.Must(template.ParseFiles("templates/base.html", "templates/views/item.html", "templates/components/entry-item.html"))
 	tmpl.Execute(w, data)
+
 }
 func categoriesHandler(w http.ResponseWriter, r *http.Request) {
 	lastPage = "item"
@@ -128,11 +137,10 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func notFoundHandler(w http.ResponseWriter, r *http.Request) {
-	lastPage = "404"
-	data := Data{PageName: lastPage}
+	w.WriteHeader(http.StatusNotFound)
 
-	tmpl := template.Must(template.ParseFiles("templates/base.html", "templates/views/index.html"))
-	tmpl.Execute(w, data)
+	tmpl := template.Must(template.ParseFiles("templates/base.html", "templates/views/404.html"))
+	tmpl.Execute(w, nil)
 }
 
 func formToFilter(form url.Values) (filters Filters) {

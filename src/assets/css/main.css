@@ -34,7 +34,7 @@ body, html {
     width: 100%;
     margin: 0;
 
-    background-color: var(--color-dark-gray);
+    background-color: rgba(0, 0, 0, 0.9);
     background-image: url(../img/background.png);
     font-family: "Open Sans",  sans-serif;
     color: var(--color-beige);
