@@ -108,6 +108,7 @@ label.submit {
     height: 100%;
     min-height: 40px;
     gap: 3px;
+    -webkit-tap-highlight-color: transparent;
     
 }
 .filter-title .count {
@@ -142,12 +143,14 @@ label.submit {
     cursor: pointer;
     width: calc(var(--mastercheck-height) * 2);
     height: var(--mastercheck-height);
-    background: grey;
+    background: #405766;
     display: block;
     border-radius: 50px;
     position: relative;
     top: 1px;
     flex-shrink: 0;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    transition: background-color 0.3s ease;
   }
   .mastermode > label {
     display: flex;
@@ -156,20 +159,23 @@ label.submit {
   .mastermode label.checkbox:after {
     content: '';
     position: absolute;
-    top: 3px;
+    top: 2px;
     left:5px;
     width: calc(var(--mastercheck-height) - 6px);
     height: calc(var(--mastercheck-height) - 6px);
+    box-shadow: 0px 0px 7px #fff;
     background: #fff;
     border-radius: 40px;
     transition: 0.3s;
   }
   
   .mastermode input:checked + label.checkbox {
-    background: red;
+    background: #15272e;
   }
   
   .mastermode input:checked + label.checkbox:after {
+    background: #f60300;
+    box-shadow: 0px 0px 10px #ff4946;
     left: calc(100% - 5px);
     transform: translateX(-100%);
   }
@@ -210,7 +216,9 @@ label.submit {
     font-style: italic;
     opacity: .7;
     cursor: pointer;
+    text-transform: capitalize;
     gap: 5px;
+    -webkit-tap-highlight-color: transparent;
 }
 .filter-option.selected, .filter-option:hover {
     opacity: 100%;
@@ -253,7 +261,7 @@ label.submit {
         font-size: 14px;
         min-height: auto;
         height: 36px;
-
+        
     }
 }
 @media screen and (max-width: 550px) {
@@ -270,7 +278,17 @@ label.submit {
     .filter-title {
         /* font-size: 13px; */
         height: 100%;
-        padding: 4px 13px 6px 10px;
+        padding: 4px 11px 6px 10px;
+    }
+    .filter-title i {
+        position: relative;
+        top: 1px;
+        font-size: 12px;
+    }
+    .filters .count {
+        align-self: flex-end;
+        font-size: 12px;
+        width: 21px;
     }
     .search-bar {
         gap: 5px;
