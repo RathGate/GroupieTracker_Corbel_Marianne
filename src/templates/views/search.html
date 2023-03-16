@@ -1,23 +1,47 @@
 {{ define "main"}}
 <section>
     <div class="request-form">
-        <form action="/search" method="POST">
-            <label for="name"><input type="text" id="name" name="name" placeholder="What are you looking for?"></label>
-            <label class="submit" for="submit-btn"><i class="fa-solid fa-arrow-right"></i></label><input type="submit" id="submit-btn" class="invisible-submit">
-            <div>
-                <div>
-                    Regions:
-                    {{ range .Regions }}
-                    <label for="{{ . }}"><input type="checkbox" id="{{.}}" name="region" value="{{.}}">{{.}}</label>
-                    {{ end }}    
+        <form action="/search" method="GET" id="search-form">
+            <div class="search-bar">
+                <input type="text" id="name" name="name" autofocus placeholder="What are you looking for?">
+                <label class="submit-container" class="submit" for="submit-btn"><i class="fa-solid fa-magnifying-glass"></i></label><input type="submit" id="submit-btn" class="invisible-submit">
+            </div>
+            <div class="filters">
+                <label for="switch"><div class="filter-title mastermode"><span>Master Mode</span> <input name="mastermode" type="checkbox" id="switch" /><label class="checkbox" for="switch"></label></div></label>
+                <div class="filter-container">
+                    <div class="filter-title">
+                        <span>Regions</span>
+                        <span class="count">(<span class="number">all</span>)</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="filter-options-container">
+                        {{ range .Regions }}
+                        <label for="{{ . }}">
+                            <div class="filter-option">
+                                <input type="checkbox" id="{{.}}" name="region" value="{{.}}"><span>{{.}}</span>
+                            </div>
+                        </label>
+                        {{ end }}     
+
+                    </div>
                 </div>
-                <div><label for="mastermode">Mastermode: <input type="checkbox" id="mastermode" name="mastermode"></label></div>
-                <div>
-                    Categories:
-                    {{ range .Categories }}
-                    <label for="{{ . }}"><input type="checkbox" id="{{.}}" name="category" value="{{.}}">{{.}}</label>
-                    {{ end }}
-                </div>
+                <div class="filter-container">
+                    <div class="filter-title">
+                        <span>Categories</span>
+                        <span class="count">(<span class="number">all</span>)</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="filter-options-container">
+                        {{ range .Categories }}
+                        <label for="{{ . }}">
+                            <div class="filter-option">
+                                <input type="checkbox" id="{{.}}" name="category" value="{{.}}"><span>{{.}}</span>
+                            </div>
+                        </label>
+                        {{ end }}     
+
+                    </div>
+                </div>         
             </div>
         </form>
     </div>

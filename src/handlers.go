@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"net/url"
 	"strconv"
+	"strings"
 	"text/template"
 
 	"github.com/gorilla/mux"
@@ -103,10 +104,17 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		r.ParseMultipartForm(20000)
 		filters := formToFilter(r.Form)
+		filters.Name = strings.ToLower(filters.Name)
 		allResults := applyFilters(filters)
-		data.ResultArr = allResults
-		tmpl := template.Must(template.ParseFiles("templates/base.html", "templates/views/search.html", "templates/components/card-item.html"))
-		tmpl.Execute(w, data)
+
+		tmpl, _ := template.New("").ParseFiles("templates/components/card-item-container.html", "templates/components/card-item.html")
+
+		err := tmpl.ExecuteTemplate(w, "card-container", allResults)
+
+		if err != nil {
+			fmt.Println(err)
+			panic(err)
+		}
 		return
 	}
 	result, err := api.UseFallBack()

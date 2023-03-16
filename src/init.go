@@ -32,7 +32,6 @@ func GenerateFallback() error {
 		return err
 	}
 	err = os.WriteFile("assets/data/places.json", file, 0644)
-	fmt.Println(err)
 	return err
 }
 
@@ -89,7 +88,7 @@ func stringInSlice(a string, list []string) bool {
 
 func isInRegion(areas []string, item api.Item) bool {
 	allregions, _ := Fill()
-	if len(areas) == 0 {
+	if len(areas) == 0 || len(item.CommonLocations) == 0 {
 		return true
 	}
 	for _, area := range areas {

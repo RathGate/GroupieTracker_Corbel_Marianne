@@ -17,6 +17,7 @@ type Data struct {
 	ResultArr    []api.Item
 	Regions      []string
 	Categories   []string
+	Mastermode   bool
 }
 
 var REGIONS_NAMES = []string{"Akkala", "Central Hyrule", "Eldin", "Faron", "Gerudo", "Hebra", "Lanayru", "Necluda"}

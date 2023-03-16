@@ -59,7 +59,6 @@ switchCategories()
 // !CARDS
 
 let cards = document.querySelectorAll(".card-item")
-console.log(cards)
 if (cards) {
     cards.forEach(card => {
         let id = card.querySelector(".item-id").innerHTML
@@ -77,3 +76,76 @@ if (cards) {
         })
     })
 }
+
+let form = document.getElementById("search-form")
+if (form) {
+    form.addEventListener("submit", function(e) {
+        e.preventDefault()
+
+        removeClassFromAll(document.querySelectorAll(".filter-options-container"), "visible")
+
+        const formData = new FormData(e.target)
+        const formDataObj = {};
+        formData.forEach((value, key) => (formDataObj[key] = value));
+        console.log(formDataObj)
+        $.ajax({
+            type: "POST",
+            url: "/search",
+            data: formDataObj,
+            success: function(data) {
+                document.querySelector(".cards-container").innerHTML = data
+                currentPageIndex = 0
+            }
+        })
+
+    })
+}
+
+
+let filters = document.querySelectorAll(".filter-container")
+if (filters) {
+    filters.forEach(element => {
+        element.querySelector(".filter-title").addEventListener("click", function() { 
+            if (element.querySelector(".filter-options-container").classList.contains("visible")) {
+                element.querySelector(".filter-options-container").classList.remove("visible")
+            } else {
+                removeClassFromAll(document.querySelectorAll(".filter-options-container"), "visible")
+                element.querySelector(".filter-options-container").classList.add("visible")    
+            }
+        })
+    })
+}
+
+if (filters) {
+    filters.forEach((filter, index) => {
+        var allcheckboxes = filter.querySelectorAll("input[type='checkbox'")
+        if (allcheckboxes) {
+            allcheckboxes.forEach(checkbox => {
+                checkbox.addEventListener("change", function() {
+                    let checkCount = countAllChecked(allcheckboxes)
+                    document.querySelectorAll(".count .number")[index].innerHTML = checkCount == 0 || checkCount == allcheckboxes.length ? "all" : checkCount
+                    console.log(countAllChecked(allcheckboxes))
+                })
+            })
+        }
+    })
+
+}
+
+function countAllChecked(checkboxes) {
+    if (!checkboxes) {
+        return 0
+    }
+    let total = 0
+    checkboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+            total++
+        }
+    })
+    return total
+}
+// document.body.addEventListener('click', function( event ){
+// 	if (!document.querySelector(".filter-options-container").contains( event.target ) && document.querySelector(".filter-options-container").classList.contains("visible") ) {
+//         document.querySelector(".filter-options-container").classList.remove("visible")
+//     }
+// });
