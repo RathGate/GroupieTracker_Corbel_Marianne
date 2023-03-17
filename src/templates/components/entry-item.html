@@ -9,7 +9,8 @@
             <div class="data-upper-left">
                 <div class="item-img-container">
                     <div class="item-img">
-                        <img src="{{ .Image }}" alt="">
+                        <div class="sheikah-eye"><img  src="/assets/img/characters/sheikah_eye.png" alt=""></div>
+                        <img class="currimg" id="img_{{ .ID }}" onload="sayHi(`img_{{ .ID }}`);" src="{{ .Image }}" alt="" >
                     </div>
                     <div class="img-frame active"><img src="/assets/img/card-border.png" alt=""></div>
                 </div>

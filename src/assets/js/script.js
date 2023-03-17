@@ -143,3 +143,19 @@ function countAllChecked(checkboxes) {
     return total
 }
 
+
+document.addEventListener("click", function(e) {
+    let filters = document.querySelectorAll(".filter-options-container")
+    let $target = $(e.target)
+
+    filters.forEach(filter => {
+        if ($target.parents(".filter-options-container").length > 0 
+        || e.target == filter 
+        || $target.parents(".filter-title.activable").length > 0 
+        || $target.hasClass("filter-title activable")){
+            return
+        }
+        removeClassFromAll(filters, "visible")
+    })
+    
+})

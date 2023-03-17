@@ -5,7 +5,7 @@
             <div class="item-img">
                 <div class="sheikah-eye"><img  src="assets/img/characters/sheikah_eye.png" alt=""></div>
                 <img class="currimg" id="img_{{ if .DisplayMaster }}{{ .MasterID}}{{else}}{{ .ID }}{{end}}" onload="sayHi(`img_{{ if .DisplayMaster }}{{ .MasterID}}{{else}}{{ .ID }}{{end}}`);" src="{{ .Image }}" alt="" >
-                <div class="item-id">{{ if .DisplayMaster }}{{  .MasterID}}{{else}}{{  .ID }}{{end}}</div>
+                <div class="item-id">{{ if .DisplayMaster }}{{ addPaddingToNumber .MasterID}}{{else}}{{ addPaddingToNumber .ID }}{{end}}</div>
             </div>
             <div class="img-frame"><img src="/assets/img/card-border.png" alt=""></div>
         </div>
