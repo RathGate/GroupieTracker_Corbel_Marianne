@@ -67,8 +67,14 @@ func MakeCategoryRequest(categoryName string) ([]Item, error) {
 	return result.Items, err
 }
 
-func MakeEntryRequest(entryName string) (result Item, err error) {
-	reqBody, status, err := MakeRequest("https://botw-compendium.herokuapp.com/api/v2/entry/" + entryName)
+func MakeEntryRequest(entryName string, mastermode bool) (result Item, err error) {
+	var requestURL string
+	if mastermode {
+		requestURL = "https://botw-compendium.herokuapp.com/api/v2/master_mode/entry/" + entryName
+	} else {
+		requestURL = "https://botw-compendium.herokuapp.com/api/v2/entry/" + entryName
+	}
+	reqBody, status, err := MakeRequest(requestURL)
 	var temp EntryRequest
 	if status != http.StatusOK {
 		return result, nil

@@ -39,5 +39,8 @@ type Item struct {
 	Drops           []string `json:"drops"`
 	ID              int      `json:"id"`
 	Image           string   `json:"image"`
-	Name            string   `json:"name"`
+	MasterExclusive bool
+	MasterID        int
+	DisplayMaster   bool
+	Name            string `json:"name"`
 }

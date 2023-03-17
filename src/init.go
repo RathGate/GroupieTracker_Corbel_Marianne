@@ -6,6 +6,7 @@ import (
 	"groupie-tracker/packages/api"
 	"net/http"
 	"os"
+	"sort"
 )
 
 type Places struct {
@@ -44,14 +45,20 @@ func GenerateMMFallback() {
 		return
 	}
 	_ = json.Unmarshal(reqBody, &masterData)
+
+	sort.Slice(masterData.Items, func(a, b int) bool {
+		return masterData.Items[a].ID < masterData.Items[b].ID
+	})
 	for _, item := range masterData.Items {
+		item.MasterExclusive = true
 		baseArr = append(baseArr[:item.ID], baseArr[item.ID-1:]...)
 		baseArr[item.ID-1] = item
 	}
 
 	for i := 0; i < len(baseArr); i++ {
-		baseArr[i].ID = i + 1
-		fmt.Printf("%v | %v\n", baseArr[i].ID, baseArr[i].Name)
+		baseArr[i].MasterID = i + 1
+		baseArr[i].DisplayMaster = true
+		fmt.Printf("%v (%v) | %v || Mastermode: %v\n", baseArr[i].ID, baseArr[i].MasterID, baseArr[i].Name, baseArr[i].MasterExclusive)
 	}
 	file, err := json.MarshalIndent(baseArr, "", "   ")
 	if err != nil {

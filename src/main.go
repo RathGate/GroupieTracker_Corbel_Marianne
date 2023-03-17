@@ -33,22 +33,23 @@ func main() {
 	r.HandleFunc("/search", searchHandler)
 	r.HandleFunc("/categories", categoriesHandler)
 	r.NotFoundHandler = http.HandlerFunc(notFoundHandler)
-
+	GenerateMMFallback()
 	// Launches the server:
 	preferredPort := ":8080"
 	fmt.Printf("Starting server at port %v\n", preferredPort)
 	if err := http.ListenAndServe(preferredPort, r); err != nil {
 		log.Fatal(err)
 	}
+
 }
 
 func applyFilters(filters Filters) (result []api.Item) {
 	var allitems []api.Item
 	var err error
-	if !filters.MasterMode {
-		allitems, _ = api.UseFallBack()
+	if filters.MasterMode {
+		allitems, _ = api.UseFallBack(true)
 	} else {
-		allitems, err = api.MakeFullRequest(true)
+		allitems, err = api.UseFallBack(false)
 		if err != nil {
 			fmt.Println(err)
 		}

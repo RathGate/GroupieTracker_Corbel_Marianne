@@ -5,32 +5,37 @@ import (
 	"os"
 	"reflect"
 	"sort"
-	"strings"
 )
 
-func SearchByName(useFallback bool, searchName string, excludedId int) (result []Item, err error) {
-	var temp []Item
-	if !useFallback {
-		temp, err = MakeFullRequest(false)
-		if err != nil {
-			return nil, err
-		}
-	} else {
-		temp, err = UseFallBack()
-		if err != nil {
-			return nil, err
-		}
-	}
-	for _, element := range temp {
-		if strings.Contains(element.Name, searchName) && element.ID != excludedId {
-			result = append(result, element)
-		}
-	}
-	return result, nil
-}
+// func SearchByName(useFallback bool, searchName string, excludedId int) (result []Item, err error) {
+// 	var temp []Item
+// 	if !useFallback {
+// 		temp, err = MakeFullRequest(false)
+// 		if err != nil {
+// 			return nil, err
+// 		}
+// 	} else {
+// 		temp, err = UseFallBack()
+// 		if err != nil {
+// 			return nil, err
+// 		}
+// 	}
+// 	for _, element := range temp {
+// 		if strings.Contains(element.Name, searchName) && element.ID != excludedId {
+// 			result = append(result, element)
+// 		}
+// 	}
+// 	return result, nil
+// }
 
-func UseFallBack() (temp []Item, err error) {
-	byteValue, err := os.ReadFile("assets/data/fallback.json")
+func UseFallBack(mastermode bool) (temp []Item, err error) {
+	var filename string
+	if mastermode {
+		filename = "assets/data/mastermode.json"
+	} else {
+		filename = "assets/data/fallback.json"
+	}
+	byteValue, err := os.ReadFile(filename)
 	if err != nil {
 		return nil, err
 	}

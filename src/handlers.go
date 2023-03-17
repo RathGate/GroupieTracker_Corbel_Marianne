@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"net/url"
+	"regexp"
 	"strconv"
 	"strings"
 	"text/template"
@@ -44,7 +45,14 @@ func itemHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	request, err := api.MakeEntryRequest(id)
+	reg := regexp.MustCompile(`\?mode=master`)
+	var request api.Item
+	var err error
+	if reg.MatchString(r.URL.RequestURI()) {
+		request, err = api.MakeEntryRequest(id, true)
+	} else {
+		request, err = api.MakeEntryRequest(id, false)
+	}
 
 	if err != nil || request.Name == "" {
 		notFoundHandler(w, r)
@@ -112,6 +120,7 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 		r.ParseMultipartForm(20000)
 		filters := formToFilter(r.Form)
 		filters.Name = strings.ToLower(filters.Name)
+
 		allResults := applyFilters(filters)
 
 		tmpl, _ := template.New("").ParseFiles("templates/components/card-item-container.html", "templates/components/card-item.html")
@@ -124,7 +133,7 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		return
 	}
-	result, err := api.UseFallBack()
+	result, err := api.UseFallBack(false)
 	if err != nil {
 		fmt.Println(err)
 	}
