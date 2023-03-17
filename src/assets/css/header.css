@@ -7,8 +7,7 @@ header {
     -webkit-tap-highlight-color: transparent;
 }
 
-/* *VERTICAL NAV */
-
+/* ?VERTICAL NAV */
 nav {
     position: relative;
     height: 100%;
@@ -22,8 +21,8 @@ nav {
     background-image: url(../img/background.png);
     border-bottom: 2px solid cyan;
 }
-/* lEFT PART: Logo */
 
+/* ?lEFT PART: Logo */
 .logo-wide {
     height: 45px;
     transition: height .2s ease-in-out;
@@ -35,8 +34,9 @@ nav {
     display: none;
 }
 
-/* RIGHT PART: Links */
+/* ?RIGHT PART */
 
+/* *Links */
 .nav-links {
     display: flex;
     gap: 40px;
@@ -54,13 +54,11 @@ nav {
     position: relative;
 }
 
-
 .nav-links a:hover .link-underline::after {
     width: 100%;
 }
 
-/* RIGHT PART: Burger menu icon */
-
+/* *Burger menu  */
 .nav-menu-icon {
     font-size: 28px;
     width:40px;
@@ -71,8 +69,7 @@ nav {
     cursor: pointer;
 }
 
-/* *BURGER MENU CONTENT */
-
+/* *Burger menu content */
 .mobile-menu {
     position: absolute;
     width: 100%;

@@ -54,7 +54,7 @@ func applyFilters(filters Filters) (result []api.Item) {
 			fmt.Println(err)
 		}
 	}
-
+	filters.Name = strings.ToLower(filters.Name)
 	for _, item := range allitems {
 		if strings.Contains(item.Name, filters.Name) && isInRegion(filters.Regions, item) && stringInSlice(item.Category, filters.Category) {
 			result = append(result, item)

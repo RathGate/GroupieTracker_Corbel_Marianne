@@ -8,7 +8,6 @@ import (
 	"net/url"
 	"regexp"
 	"strconv"
-	"strings"
 	"text/template"
 
 	"github.com/gorilla/mux"
@@ -109,7 +108,6 @@ func categoriesHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("templates/base.html", "templates/views/categories.html", "templates/components/card-item.html"))
 	tmpl.Execute(w, data)
 
-	fmt.Println(len(lastRequest.AllResults))
 	lastRequest.updateRequest("idk", temp)
 }
 func searchHandler(w http.ResponseWriter, r *http.Request) {
@@ -117,7 +115,6 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		r.ParseMultipartForm(20000)
 		filters := formToFilter(r.Form)
-		filters.Name = strings.ToLower(filters.Name)
 
 		allResults := applyFilters(filters)
 

@@ -58,7 +58,6 @@ func GenerateMMFallback() {
 	for i := 0; i < len(baseArr); i++ {
 		baseArr[i].MasterID = i + 1
 		baseArr[i].DisplayMaster = true
-		fmt.Printf("%v (%v) | %v || Mastermode: %v\n", baseArr[i].ID, baseArr[i].MasterID, baseArr[i].Name, baseArr[i].MasterExclusive)
 	}
 	file, err := json.MarshalIndent(baseArr, "", "   ")
 	if err != nil {

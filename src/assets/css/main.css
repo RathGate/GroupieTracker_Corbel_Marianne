@@ -5,6 +5,7 @@
 @import url(footer.css);
 @import url(scrollbars.css);
 @import url(search.css);
+@import url(categories.css);
 
 @font-face {
     font-family: "Hylia";
@@ -73,6 +74,16 @@ main {
 
 .link-underline:hover::after, .link-underline.active::after {
     width: 100%;
+}
+
+.neon-italic-text {
+    font-style: italic;
+    color: #7fe5ff;
+    text-shadow: 0px 0px 5px cyan;
+}
+.neon-bg {
+    background-color: #7fe5ff;
+    box-shadow: 0px 0px 4px cyan;
 }
 
 /* .card-item {
@@ -172,42 +183,6 @@ h1{
 .sheikah-font {
     text-transform: lowercase;
     font-family: "Sheikah", sans-serif;
-}
-
-.cat-logo {
-    -webkit-filter: drop-shadow(0 5px #00ffffc4);
-  filter: drop-shadow(0 0 5px #00ffffc4);
-  height: 50px;
-}
-.cat-icon-container {
-    padding: 20px 0;
-    margin-bottom: 30px;
-    display: flex;
-    gap: 10px;
-    border-bottom: 1px solid rgba(0, 255, 255, 0.37);
-}
-.cat-title {
-    color: #7fe5ff;
-    text-shadow: 0px 0px 4px cyan;
-    font-style: italic;
-    flex-grow: 0;
-}
-.cat-icon {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    width: 90px;
-    transition: .2s filter ease;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-}
-.cat-icon:not(.active) {
-    filter: brightness(70%);
-}
-.cat-icon:hover {
-    filter: none;
 }
 
 @media screen and (max-width: 550px) {
