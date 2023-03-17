@@ -3,6 +3,7 @@
     display: grid;
     grid-template-columns: repeat(8, minmax(0, 1fr));
     gap: 20px;
+    width: 100%;
 }
 
 /* ?CARDS */
@@ -16,7 +17,7 @@
     width: 100%;
     max-width: 300px;
     aspect-ratio: 1;
-    background-color: #131313;
+    background-color: rgba(0, 0, 0, 0.4);
     position: relative;
 }
 
