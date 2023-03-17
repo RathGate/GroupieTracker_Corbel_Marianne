@@ -5,6 +5,7 @@ import (
 	"groupie-tracker/packages/api"
 	"log"
 	"net/http"
+	"strconv"
 	"strings"
 
 	"github.com/gorilla/mux"
@@ -33,14 +34,12 @@ func main() {
 	r.HandleFunc("/search", searchHandler)
 	r.HandleFunc("/categories", categoriesHandler)
 	r.NotFoundHandler = http.HandlerFunc(notFoundHandler)
-	GenerateMMFallback()
 	// Launches the server:
 	preferredPort := ":8080"
 	fmt.Printf("Starting server at port %v\n", preferredPort)
 	if err := http.ListenAndServe(preferredPort, r); err != nil {
 		log.Fatal(err)
 	}
-
 }
 
 func applyFilters(filters Filters) (result []api.Item) {
@@ -61,4 +60,12 @@ func applyFilters(filters Filters) (result []api.Item) {
 		}
 	}
 	return result
+}
+
+func addPaddingToNumber(baseInt int) string {
+	baseStr := strconv.Itoa(baseInt)
+	if len(baseStr) >= 3 {
+		return baseStr
+	}
+	return fmt.Sprintf("%v%v", strings.Repeat("0", 3-len(baseStr)), baseStr)
 }

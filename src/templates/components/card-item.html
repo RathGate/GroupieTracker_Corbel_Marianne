@@ -4,7 +4,7 @@
         <div class="item-img-container">
             <div class="item-img">
                 <img src="{{ .Image }}" alt="">
-                <div class="item-id">{{ if .DisplayMaster }}{{.MasterID}}{{else}}{{ .ID }}{{end}}</div>
+                <div class="item-id">{{ if .DisplayMaster }}{{ addPaddingToNumber .MasterID}}{{else}}{{ addPaddingToNumber .ID }}{{end}}</div>
             </div>
             <div class="img-frame"><img src="/assets/img/card-border.png" alt=""></div>
         </div>

@@ -58,8 +58,12 @@ func itemHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	data := Data{PageName: lastPage, PerfectMatch: request}
-
-	tmpl := template.Must(template.ParseFiles("templates/base.html", "templates/views/item.html", "templates/components/entry-item.html"))
+	tmpl, err := template.New("base.html").Funcs(template.FuncMap{
+		"addPaddingToNumber": addPaddingToNumber,
+	}).ParseFiles("templates/base.html", "templates/views/item.html", "templates/components/entry-item.html")
+	if err != nil {
+		log.Fatal(err)
+	}
 	tmpl.Execute(w, data)
 
 }
@@ -81,9 +85,12 @@ func categoriesHandler(w http.ResponseWriter, r *http.Request) {
 				return
 			}
 
-			tmpl, err := template.New("").ParseFiles("templates/components/card-item-container.html", "templates/components/card-item.html")
-			fmt.Println(err)
-
+			tmpl, err := template.New("").Funcs(template.FuncMap{
+				"addPaddingToNumber": addPaddingToNumber,
+			}).ParseFiles("templates/components/card-item-container.html", "templates/components/card-item.html")
+			if err != nil {
+				log.Fatal(err)
+			}
 			err = tmpl.ExecuteTemplate(w, "card-container", temp)
 
 			if err != nil {
@@ -105,7 +112,12 @@ func categoriesHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	data.ResultArr = temp
-	tmpl := template.Must(template.ParseFiles("templates/base.html", "templates/views/categories.html", "templates/components/card-item.html"))
+	tmpl, err := template.New("base.html").Funcs(template.FuncMap{
+		"addPaddingToNumber": addPaddingToNumber,
+	}).ParseFiles("templates/base.html", "templates/views/categories.html", "templates/components/card-item.html")
+	if err != nil {
+		log.Fatal(err)
+	}
 	tmpl.Execute(w, data)
 
 	lastRequest.updateRequest("idk", temp)
@@ -118,13 +130,16 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 
 		allResults := applyFilters(filters)
 
-		tmpl, _ := template.New("").ParseFiles("templates/components/card-item-container.html", "templates/components/card-item.html")
-
-		err := tmpl.ExecuteTemplate(w, "card-container", allResults)
+		tmpl, err := template.New("").Funcs(template.FuncMap{
+			"addPaddingToNumber": addPaddingToNumber,
+		}).ParseFiles("templates/components/card-item-container.html", "templates/components/card-item.html")
+		if err != nil {
+			log.Fatal(err)
+		}
+		err = tmpl.ExecuteTemplate(w, "card-container", allResults)
 
 		if err != nil {
-			fmt.Println(err)
-			panic(err)
+			log.Fatal(err)
 		}
 		return
 	}
@@ -133,7 +148,15 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 	}
 	data.ResultArr = result
-	tmpl := template.Must(template.ParseFiles("templates/base.html", "templates/views/search.html", "templates/components/card-item.html"))
+
+	// files := []string{"templates/_results-table.html", "templates/results.html"}
+	tmpl, err := template.New("base.html").Funcs(template.FuncMap{
+		"addPaddingToNumber": addPaddingToNumber,
+	}).ParseFiles("templates/base.html", "templates/views/search.html", "templates/components/card-item.html")
+	if err != nil {
+		panic(err)
+	}
+
 	tmpl.Execute(w, data)
 }
 

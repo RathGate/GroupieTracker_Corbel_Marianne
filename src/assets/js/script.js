@@ -79,7 +79,7 @@ let form = document.getElementById("search-form")
 if (form) {
     form.addEventListener("submit", function(e) {
         e.preventDefault()
-
+        
         // Hides all open filter options menu when submitting form
         removeClassFromAll(document.querySelectorAll(".filter-options-container"), "visible")
 
