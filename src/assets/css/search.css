@@ -43,12 +43,14 @@
     flex: 1;
 }
 
-.request-form input[type="text"]::placeholder {
+.request-form input[type="text"]::placeholder { 
     position: relative;
-    top: 3px;
+    top: 2px;
     font-family: "Sheikah", sans-serif;
     opacity: 0.8;
     text-transform: lowercase;
+    /* border: 2px solid violet;
+    height: 100%;  */
 }
 
 /* Submit button */
@@ -123,6 +125,7 @@
 .filter-title span {
     padding-right: 2px;
     white-space: nowrap;
+    user-select: none;
 }
 /* Check count */
 .filter-title .count {
@@ -225,6 +228,7 @@
     text-transform: capitalize;
     gap: 5px;
     -webkit-tap-highlight-color: transparent;
+    user-select: none;
 }
 
 .filter-container input[type="checkbox"] {
@@ -278,7 +282,6 @@
         --mastercheck-height: 20px
     }
     .request-form input[type="text"]::placeholder {
-        top: 2px;
         font-size: 14px;
     }
     .request-form input[type="text"] {
@@ -303,7 +306,7 @@
         gap: 5px;
     }
     :root {
-        --searchbar-height: 30px
+        --searchbar-height: 35px
     }
     .submit-container i {
         font-size: 16px;
