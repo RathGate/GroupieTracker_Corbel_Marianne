@@ -34,6 +34,7 @@
     width: 100%;
     filter: grayscale(100%) brightness(60%);
     transition: .2s ease;
+    
 }
 
 /* Div that contains the image itself */
@@ -163,4 +164,48 @@
     .cards-container {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+}
+
+.sheikah-eye {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-position: center center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: neonGlow 1s alternate infinite;
+    
+}
+.sheikah-eye img {
+    position: relative;
+    left: 1px;
+    max-width: 75%;
+    width: auto;
+}
+
+@keyframes neonGlow {
+    0% {
+        -webkit-filter: drop-shadow(0 0 2px #00ffffc4);
+        filter: drop-shadow(0 0 2px #00ffffc4);
+    }
+    100% {
+        -webkit-filter: drop-shadow(0 0 10px #00ffffc4);
+        filter: drop-shadow(0 0 10px #00ffffc4);
+    }
+}
+
+.currimg, .img-frame {
+    z-index: 2;
+}
+.currimg {
+    opacity: 0;
+    transition: opacity .3s ease;
+    
+    position: relative;
+}
+.currimg.loaded {
+    opacity: 1;
 }

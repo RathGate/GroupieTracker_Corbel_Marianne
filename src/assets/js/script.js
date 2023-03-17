@@ -142,3 +142,14 @@ function countAllChecked(checkboxes) {
     })
     return total
 }
+
+
+
+
+
+function sayHi(div) {
+    div = document.getElementById(div)
+    if (div) {
+        div.classList.add("loaded")
+    }
+}
