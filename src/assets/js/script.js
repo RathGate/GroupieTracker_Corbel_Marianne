@@ -124,7 +124,6 @@ if (filters) {
                 checkbox.addEventListener("change", function() {
                     let checkCount = countAllChecked(allcheckboxes)
                     document.querySelectorAll(".count .number")[index].innerHTML = checkCount == 0 || checkCount == allcheckboxes.length ? "all" : checkCount
-                    console.log(countAllChecked(allcheckboxes))
                 })
             })
         }

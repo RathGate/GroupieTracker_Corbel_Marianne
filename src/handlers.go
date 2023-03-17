@@ -81,9 +81,7 @@ func categoriesHandler(w http.ResponseWriter, r *http.Request) {
 				println(err)
 				return
 			}
-			for i, v := range temp {
-				fmt.Println(i, v.Name, v.ID)
-			}
+
 			tmpl, err := template.New("").ParseFiles("templates/components/card-item-container.html", "templates/components/card-item.html")
 			fmt.Println(err)
 
@@ -140,7 +138,6 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 	data.ResultArr = result
 	tmpl := template.Must(template.ParseFiles("templates/base.html", "templates/views/search.html", "templates/components/card-item.html"))
 	tmpl.Execute(w, data)
-	fmt.Println(len(lastRequest.AllResults))
 }
 
 func notFoundHandler(w http.ResponseWriter, r *http.Request) {
