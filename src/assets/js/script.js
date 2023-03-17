@@ -26,9 +26,8 @@ function removeClassFromAll(divArr, className) {
 
 let currentPageIndex = 0
 
-// TODO ----------------------------------------|
-// TODO: Other files ---------------------------|
-// TODO ----------------------------------------|
+
+// ?CATEGORIES PAGE:
 
 // Switches the current category on click (category page only)
 function switchCategories() {
@@ -52,12 +51,10 @@ function switchCategories() {
         })
     }
 }
-
 switchCategories()
 
 
-// !CARDS
-
+// ?CARDS TEMPLATE
 let cards = document.querySelectorAll(".card-item")
 if (cards) {
     cards.forEach(card => {
@@ -77,17 +74,21 @@ if (cards) {
     })
 }
 
+// ?SEARCH PAGE - Form
 let form = document.getElementById("search-form")
 if (form) {
     form.addEventListener("submit", function(e) {
         e.preventDefault()
 
+        // Hides all open filter options menu when submitting form
         removeClassFromAll(document.querySelectorAll(".filter-options-container"), "visible")
 
+        // Generates the form data
         const formData = new FormData(e.target)
         const formDataObj = {};
         formData.forEach((value, key) => (formDataObj[key] = value));
-        console.log(formDataObj)
+        
+        // Sends the formdata and replaces the content of a div with the response
         $.ajax({
             type: "POST",
             url: "/search",
@@ -97,28 +98,16 @@ if (form) {
                 currentPageIndex = 0
             }
         })
-
     })
 }
 
 
+// ?SEARCH PAGE - Filters
 let filters = document.querySelectorAll(".filter-container")
 if (filters) {
-    filters.forEach(element => {
-        element.querySelector(".filter-title").addEventListener("click", function() { 
-            if (element.querySelector(".filter-options-container").classList.contains("visible")) {
-                element.querySelector(".filter-options-container").classList.remove("visible")
-            } else {
-                removeClassFromAll(document.querySelectorAll(".filter-options-container"), "visible")
-                element.querySelector(".filter-options-container").classList.add("visible")    
-            }
-        })
-    })
-}
-
-if (filters) {
     filters.forEach((filter, index) => {
-        var allcheckboxes = filter.querySelectorAll("input[type='checkbox'")
+        // Tracks the checkboxes
+        var allcheckboxes = filter.querySelectorAll("input[type='checkbox']")
         if (allcheckboxes) {
             allcheckboxes.forEach(checkbox => {
                 checkbox.addEventListener("change", function() {
@@ -127,10 +116,20 @@ if (filters) {
                 })
             })
         }
-    })
 
+        // Show or hide full filter menu
+        filter.querySelector(".filter-title").addEventListener("click", function() { 
+            if (filter.querySelector(".filter-options-container").classList.contains("visible")) {
+                filter.querySelector(".filter-options-container").classList.remove("visible")
+            } else {
+                removeClassFromAll(document.querySelectorAll(".filter-options-container"), "visible")
+                filter.querySelector(".filter-options-container").classList.add("visible")    
+            }
+        })
+    })
 }
 
+// Count all checkboxes checked in a array of checkboxes.
 function countAllChecked(checkboxes) {
     if (!checkboxes) {
         return 0
@@ -143,8 +142,3 @@ function countAllChecked(checkboxes) {
     })
     return total
 }
-// document.body.addEventListener('click', function( event ){
-// 	if (!document.querySelector(".filter-options-container").contains( event.target ) && document.querySelector(".filter-options-container").classList.contains("visible") ) {
-//         document.querySelector(".filter-options-container").classList.remove("visible")
-//     }
-// });
