@@ -1,7 +1,9 @@
+
 footer {
     padding: 35px 0 10px;
     width: 100%;
     background: rgba(0, 0, 0, 0.4);
+    z-index: 5;
 }
 
 .footer-content {
