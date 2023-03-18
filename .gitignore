@@ -2,3 +2,5 @@ tmp/
 /assets/data/fallback.json
 templates/temp.html
 .vscode/
+/src/data/all_mastermode.json
+/src/data/all_normalmode.json

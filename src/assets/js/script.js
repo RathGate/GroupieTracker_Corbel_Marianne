@@ -83,16 +83,11 @@ if (form) {
         // Hides all open filter options menu when submitting form
         removeClassFromAll(document.querySelectorAll(".filter-options-container"), "visible")
 
-        // Generates the form data
-        const formData = new FormData(e.target)
-        const formDataObj = {};
-        formData.forEach((value, key) => (formDataObj[key] = value));
-        
         // Sends the formdata and replaces the content of a div with the response
         $.ajax({
             type: "POST",
             url: "/search",
-            data: formDataObj,
+            data: $("#search-form").serialize(),
             success: function(data) {
                 document.querySelector(".cards-container").innerHTML = data
                 currentPageIndex = 0

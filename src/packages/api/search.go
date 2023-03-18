@@ -41,6 +41,7 @@ func LoadPlaceNames() (temp map[string][]string, err error) {
 }
 
 func FormToFilter(form url.Values) (filters Filters) {
+
 	filters.Name = form["name"][0]
 	if _, ok := form["category"]; ok {
 		filters.Category = form["category"]
@@ -51,6 +52,7 @@ func FormToFilter(form url.Values) (filters Filters) {
 	if _, ok := form["region"]; ok {
 		filters.Regions = form["region"]
 	}
+
 	return filters
 }
 
