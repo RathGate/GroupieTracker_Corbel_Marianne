@@ -4,10 +4,10 @@
         <div class="item-img-container">
             <div class="item-img">
                 <div class="sheikah-eye"><img  src="assets/img/characters/sheikah_eye.png" alt=""></div>
-                <img class="currimg" id="img_{{ if .DisplayMaster }}{{ .MasterID}}{{else}}{{ .ID }}{{end}}" onload="sayHi(`img_{{ if .DisplayMaster }}{{ .MasterID}}{{else}}{{ .ID }}{{end}}`);" src="{{ .Image }}" alt="" >
+                <img class="currimg" id="img_{{ if .DisplayMaster }}{{ .MasterID}}{{else}}{{ .ID }}{{end}}" onload="sayHi(`img_{{ if .DisplayMaster }}{{ .MasterID}}{{else}}{{ .ID }}{{end}}`);" src="{{ .Image }}" alt="Image of a {{ . }}" >
                 <div class="item-id">{{ if .DisplayMaster }}{{ addPaddingToNumber .MasterID}}{{else}}{{ addPaddingToNumber .ID }}{{end}}</div>
             </div>
-            <div class="img-frame"><img src="/assets/img/card-border.png" alt=""></div>
+            <div class="img-frame"><img src="/assets/img/card-border.png" alt="Image decoration frame"></div>
         </div>
         <div class="card-title">
             <span class="item-name-placeholder sheikah-font">Ratio</span>

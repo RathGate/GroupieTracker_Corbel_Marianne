@@ -35,7 +35,8 @@
     width: 100%;
     filter: grayscale(100%) brightness(60%);
     transition: .2s ease;
-    
+    user-select: none;
+    pointer-events: none;
 }
 
 /* Div that contains the image itself */

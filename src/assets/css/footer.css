@@ -7,11 +7,16 @@ footer {
 .footer-content {
     width: 100%;
     margin: 0 auto;
-    max-width: 950px;
+    max-width: 750px;
     padding: 0 25px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    line-height: 1.5;
+}
+.footer-content p a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }
 
 .footer-logo {
@@ -45,15 +50,22 @@ footer {
 /* !RESPONSIVE */
 
 @media screen and (max-width: 550px) {
+    .footer-logo {
+        height: 35px;
+    }
     .footer-description {
-        font-size: 13px;
+        font-size: 12px;
     }
     .footer-categories {
         font-size: 13px;
         gap: 25px;
+        padding-top: 0;
     }
     .copyright {
         font-size: 11px;
+    }
+    .footer-content {
+        gap: 10px;
     }
 }
 
