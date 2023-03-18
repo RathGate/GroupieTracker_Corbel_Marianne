@@ -29,7 +29,7 @@ type Places struct {
 }
 
 func LoadPlaceNames() (temp map[string][]string, err error) {
-	byteValue, err := os.ReadFile("assets/data/places.json")
+	byteValue, err := os.ReadFile("data/places.json")
 	if err != nil {
 		return nil, err
 	}
@@ -57,11 +57,13 @@ func FormToFilter(form url.Values) (filters Filters) {
 }
 
 func IsInRegion(areas []string, allregions map[string][]string, item Item) bool {
-	if len(areas) == 0 || len(item.CommonLocations) == 0 {
+	if len(areas) == 0 || len(item.CommonLocations) == 0 || utils.StringInSlice("Greater Hyrule", item.CommonLocations) {
 		return true
 	}
 	for _, area := range areas {
-		if region, ok := allregions[area]; !ok {
+
+		region, ok := allregions[area]
+		if !ok {
 			continue
 		} else {
 			for _, location := range item.CommonLocations {
@@ -76,21 +78,27 @@ func IsInRegion(areas []string, allregions map[string][]string, item Item) bool 
 
 func ApplyFilters(filters Filters) (result []Item) {
 	allregions, _ := LoadPlaceNames()
+
 	var allitems []Item
 	var err error
+
 	if filters.MasterMode {
 		allitems, _ = UseFallBack(true)
 	} else {
 		allitems, err = UseFallBack(false)
-		if err != nil {
-			fmt.Println(err)
-		}
 	}
+	// Error check:
+	if err != nil {
+		fmt.Println(err)
+	}
+
 	filters.Name = strings.ToLower(filters.Name)
+
 	for _, item := range allitems {
 		if strings.Contains(item.Name, filters.Name) && IsInRegion(filters.Regions, allregions, item) && utils.StringInSlice(item.Category, filters.Category) {
 			result = append(result, item)
 		}
 	}
+
 	return result
 }
