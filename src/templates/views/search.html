@@ -22,7 +22,6 @@
                             </div>
                         </label>
                         {{ end }}     
-
                     </div>
                 </div>
                 <div class="filter-container">
@@ -39,7 +38,6 @@
                             </div>
                         </label>
                         {{ end }}     
-
                     </div>
                 </div>         
             </div>
@@ -48,14 +46,12 @@
     {{ if ne .PerfectMatch.Name ""}}
     <h1>Perfect match</h1>
     <div class="cards-container">
-        
         {{ template "card" .PerfectMatch }}
     </div>
     {{ end }}
     {{ if .ResultArr }}
     <h1>All results</h1>
     <div class="cards-container">
-        
         {{ range .ResultArr}}
             {{ template "card" . }}
         {{ end }}

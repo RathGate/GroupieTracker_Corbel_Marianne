@@ -2,40 +2,34 @@ package api
 
 import (
 	"encoding/json"
+	"fmt"
+	"groupie-tracker/packages/utils"
+	"net/url"
 	"os"
-	"reflect"
-	"sort"
+	"strings"
 )
 
-// func SearchByName(useFallback bool, searchName string, excludedId int) (result []Item, err error) {
-// 	var temp []Item
-// 	if !useFallback {
-// 		temp, err = MakeFullRequest(false)
-// 		if err != nil {
-// 			return nil, err
-// 		}
-// 	} else {
-// 		temp, err = UseFallBack()
-// 		if err != nil {
-// 			return nil, err
-// 		}
-// 	}
-// 	for _, element := range temp {
-// 		if strings.Contains(element.Name, searchName) && element.ID != excludedId {
-// 			result = append(result, element)
-// 		}
-// 	}
-// 	return result, nil
-// }
+type Filters struct {
+	Name       string
+	Regions    []string
+	Category   []string
+	MasterMode bool
+}
 
-func UseFallBack(mastermode bool) (temp []Item, err error) {
-	var filename string
-	if mastermode {
-		filename = "assets/data/mastermode.json"
-	} else {
-		filename = "assets/data/fallback.json"
-	}
-	byteValue, err := os.ReadFile(filename)
+type Places struct {
+	All           []string `json:"All"`
+	Akkala        []string `json:"Akkala"`
+	CentralHyrule []string `json:"Central Hyrule"`
+	Eldin         []string `json:"Eldin"`
+	Faron         []string `json:"Faron"`
+	Gerudo        []string `json:"Gerudo"`
+	Hebra         []string `json:"Hebra"`
+	Lanayru       []string `json:"Lanayru"`
+	Necluda       []string `json:"Necluda"`
+}
+
+func LoadPlaceNames() (temp map[string][]string, err error) {
+	byteValue, err := os.ReadFile("assets/data/places.json")
 	if err != nil {
 		return nil, err
 	}
@@ -46,41 +40,55 @@ func UseFallBack(mastermode bool) (temp []Item, err error) {
 	return temp, nil
 }
 
-// TODO: Clear the function (redundancy)
-// Flattens the multilevel FullRequest struct (see structs.go)
-// to a one-dimension []Item array.
-func FlattenFullRequest(request FullRequest) (resultArr []Item) {
-	var temp = request.Data
-
-	// Flatten 2D struct Creatures.Food and Creatures.NonFood
-	e := reflect.ValueOf(&temp.Creatures).Elem()
-	for i := 0; i < e.NumField(); i++ {
-		arr := (e.Field(i).Interface().([]Item))
-		for j := 0; i == 0 && j < len(arr); j++ {
-			arr[j].Food = true
-		}
-		resultArr = append(resultArr, arr...)
+func FormToFilter(form url.Values) (filters Filters) {
+	filters.Name = form["name"][0]
+	if _, ok := form["category"]; ok {
+		filters.Category = form["category"]
 	}
-
-	e = reflect.ValueOf(&temp).Elem()
-	for i := 1; i < e.NumField(); i++ {
-		resultArr = append(resultArr, e.Field(i).Interface().([]Item)...)
+	if _, ok := form["mastermode"]; ok {
+		filters.MasterMode = true
 	}
-	sort.Slice(resultArr, func(a, b int) bool {
-		return resultArr[a].ID < resultArr[b].ID
-	})
-	return resultArr
+	if _, ok := form["region"]; ok {
+		filters.Regions = form["region"]
+	}
+	return filters
 }
 
-func FlattenCreatureRequest(request CreaturesRequest) (resultArr []Item) {
-
-	var temp = request.Data
-	e := reflect.ValueOf(&temp).Elem()
-	for i := 0; i < e.NumField(); i++ {
-		resultArr = append(resultArr, e.Field(i).Interface().([]Item)...)
+func IsInRegion(areas []string, allregions map[string][]string, item Item) bool {
+	if len(areas) == 0 || len(item.CommonLocations) == 0 {
+		return true
 	}
-	sort.Slice(resultArr, func(a, b int) bool {
-		return resultArr[a].ID < resultArr[b].ID
-	})
-	return resultArr
+	for _, area := range areas {
+		if region, ok := allregions[area]; !ok {
+			continue
+		} else {
+			for _, location := range item.CommonLocations {
+				if utils.StringInSlice(location, region) {
+					return true
+				}
+			}
+		}
+	}
+	return false
+}
+
+func ApplyFilters(filters Filters) (result []Item) {
+	allregions, _ := LoadPlaceNames()
+	var allitems []Item
+	var err error
+	if filters.MasterMode {
+		allitems, _ = UseFallBack(true)
+	} else {
+		allitems, err = UseFallBack(false)
+		if err != nil {
+			fmt.Println(err)
+		}
+	}
+	filters.Name = strings.ToLower(filters.Name)
+	for _, item := range allitems {
+		if strings.Contains(item.Name, filters.Name) && IsInRegion(filters.Regions, allregions, item) && utils.StringInSlice(item.Category, filters.Category) {
+			result = append(result, item)
+		}
+	}
+	return result
 }

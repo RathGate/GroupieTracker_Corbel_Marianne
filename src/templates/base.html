@@ -8,14 +8,11 @@
     <script src="https://kit.fontawesome.com/65cde144bd.js" crossorigin="anonymous"></script>
     <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico">
     <script src="https://kit.fontawesome.com/65cde144bd.js" crossorigin="anonymous"></script>
-    <script
-        src="https://code.jquery.com/jquery-3.6.4.min.js"
-        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
-        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous">
     </script>
     <title>Groupie Tracker</title>
     <script>
-        function sayHi(div) {
+        function showImage(div) {
             div = document.getElementById(div)
             if (div) {
                 div.classList.add("loaded")
@@ -44,20 +41,9 @@
                 <a href="/categories"><div class="nav-link link-underline {{if eq .PageName "categories"}}active{{end}}">Categories</div></a>
                 <a href="/search"><div class="nav-link link-underline {{if eq .PageName "search"}}active{{end}}">Search</div></a>
         </div>
-  
-
     </header>
     <main>
-
-
-
-
-            {{ template "main" . }}
- 
-
-
-
-
+        {{ template "main" . }}
     </main>
     <footer>
         <div class="footer-content">
@@ -67,7 +53,6 @@
             <div class="footer-description">
                 <p>Based on <a href="https://github.com/gadhagod">Aarav Borthakur</a>'s <a href="https://github.com/gadhagod/Hyrule-Compendium-API">Hyrule Compendium API</a>, the Compendium Data Viewer is a visual tool that will help you search the bestiary of the game <span style="font-style: italic">The Legend of Zelda: Breath of the Wild</span>.</p>
                 <p>Designed and realised by Marianne "<a href="https://github.com/RathGate">RathGate</a>" Corbel.</p>
-                
             </div>
             <div class="footer-categories">
                 <a href="/"><div class="footer-link link-underline">Home</div></a>
