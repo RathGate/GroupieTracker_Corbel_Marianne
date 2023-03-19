@@ -14,7 +14,39 @@ import (
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 	data := Data{PageName: "Home"}
 
-	tmpl := generateTemplate("base.html", []string{"templates/base.html", "templates/views/index.html"})
+	// ?User came here by "POST" method: they tried to refresh the entry container
+	if r.Method == "POST" && r.FormValue("retrieveNew") != "" {
+		randomID := r.FormValue("retrieveNew")
+
+		if _, err := strconv.Atoi(randomID); err != nil {
+			w.WriteHeader(404)
+			return
+		}
+
+		request, err := api.RequestSingleEntry(randomID, false)
+		if err != nil {
+			// TODO: what fucking kind of error handler should I put here
+			fmt.Println("CAUTION: The API didn't answer correctly.")
+		}
+
+		// *Generates and executes templates:
+		tmpl := generateTemplate("", []string{"templates/components/entry-item.html"})
+		tmpl.ExecuteTemplate(w, "single-page", request)
+		return
+	}
+
+	// ?User came here by "GET" method:
+
+	request, err := api.RequestSingleEntry("8", false)
+	if err != nil {
+		// TODO: what fucking kind of error handler should I put here
+		fmt.Println("CAUTION: The API didn't answer correctly.")
+	}
+
+	data.PerfectMatch = request
+
+	// *Generates and executes templates:
+	tmpl := generateTemplate("base.html", []string{"templates/base.html", "templates/views/index.html", "templates/components/entry-item.html"})
 	tmpl.Execute(w, data)
 }
 

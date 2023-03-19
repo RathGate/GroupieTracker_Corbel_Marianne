@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+
+.entry-item-container {
+    margin-bottom: 10px;
+}
+
+.front-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 40px;
+    max-width: 70%;
+    margin: 0 auto;
+}
+.front-logo img {
+    max-width: 100%;
+    display: block;
+}
+
+.refresh {
+    font-size: 15px;
+    font-style: italic;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    right: 3px;
+    padding: 5px 0;
+    opacity: .7;
+    transition: opacity .2s ease;
+    cursor: pointer;
+}
+.refresh:hover {
+    opacity: 1;
+}
+
+.about  {
+    width: 100%;
+    max-width: 1050px;
+    margin: 0 auto;
+}
+
+.about h1 {
+    font-family: "Hylia", sans-serif;
+    font-weight: initial;
+    margin: 20px 0;
+    font-size: 40px;
+}
+.about p {
+    font-size: 17px;
+    /* margin: 0; */
+}
+
+.code-block{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+.code-block-title {
+    font-weight: bold;
+}
+.code-block-content {
+    background-color: rgba(255, 255, 255, 0.1);
+    font-family: 'Space Mono', monospace;
+    padding: 20px 25px;
+    border-radius: 5px;
+}
+.code-block-content span {
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+pre{
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    margin: 0;
+    font-size: 16px;
+    word-wrap: break-word; 
+    font-family:  'Space Mono', monospace;;
+}
+
+@media screen and (max-width: 750px) {
+    .about {
+        max-width: 600px;
+    }
+    .about h1 {
+        font-size: 35px;
+    }
+    .about p, .code-block-title, pre {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .refresh {
+        font-size: 11px;
+    }
+    .about h1 {
+        font-size: 25px;
+    }
+    .about p, .code-block-title {
+        font-size: 14px;
+    }
+    .code-block-content span, pre {
+        font-size: 13px;
+    }
+}

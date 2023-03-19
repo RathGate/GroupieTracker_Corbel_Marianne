@@ -152,3 +152,31 @@ document.addEventListener("click", function(e) {
     
     removeClassFromAll(filters, "visible")
 })
+
+// ?INDEX PAGE 
+
+let refreshBtn = document.querySelector(".refresh")
+let parentDiv = document.querySelector(".item-to-replace")
+if (refreshBtn && parentDiv) {
+    refreshBtn.addEventListener("click", function() {
+        let randomInt = Math.floor(Math.random() * 389) + 1
+        let jsonData;
+        $.ajax({
+            type: "POST",
+            url: "/",
+            data: {"retrieveNew": randomInt},
+            success: function(template) {
+                
+                parentDiv.innerHTML = template
+                document.querySelector("#id-to-replace").innerHTML = randomInt
+            }})
+        $.ajax({
+            url: 'https://botw-compendium.herokuapp.com/api/v2/entry/' + randomInt,
+            success: function(data) {
+             document.querySelector("#json-to-replace").innerHTML = JSON.stringify(data, null, 2)
+        }});
+
+
+        
+    })
+}

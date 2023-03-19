@@ -1,5 +1,49 @@
 {{ define "main" }}
+<div class="front-logo">
+    <img src="/assets/img/indexLogo.png" alt="">
+</div>
 <section>
-    Bonjour
+    <div class="entry-item-container">
+        <div class="item-to-replace">
+            {{ template "single-page" .PerfectMatch }}
+        </div>
+        <div class="refresh">Show me another one !!</div>
+    </div>
+    <div class="about">
+        <h1>About the API</h1>
+        <p>Welcome to the Compendium Data Viewer, a tool that will help you visualize each and every entry of the bestiary from the game The Legend of Zelda: Breath of the Wild - directly on your computer or smartphone screen !</p>
+        <p>This website uses <a href="https://github.com/gadhagod">Aarav Borthakur</a>'s <a href="https://github.com/gadhagod/Hyrule-Compendium-API">Hyrule Compendium API</a> as its main source of data. It stores the data of the 394 entries of the compendium, which are all the monsters, equipment, treasures, creatures and materials that you can find on the vast continent of Hyrule.</p>
+    </div>
+    <div class="about">
+        <h1>How to use the API</h1>
+        <p>As the API doesn't require any key or token to send responses, a simple HTTP GET request suffices to receive data.</p>
+
+        <div class="code-block">
+            <span class="code-block-title">For exemple, here's the request that has generated the card above!</span>
+            <div class="code-block-content">
+                <span>GET https://botw-compendium.herokuapp.com/api/v2/entry/<span id="id-to-replace">8</span>
+            </div>
+        </div>
+
+        <div class="code-block">
+            <span class="code-block-title">And here is what the API sent us back:</span>
+            <div class="code-block-content">
+                <pre id="json-to-replace" >{
+  "data": {
+    "category": "creatures",
+    "common_locations": [
+      "Gerudo Desert"
+    ],
+    "description": "This is Riju's own sand seal. It may look intense, but she dotes on it regularly; the ribbon it wears was a gift form her, and it even has its own pen in Gerudo Town. It's far more agile than any other sand seal and far more outgoing. An ever-reliable partner to Riju, Patricia is always ready to take off through the desert at a moment's notice.",
+    "drops": [],
+    "id": 8,
+    "image": "https://botw-compendium.herokuapp.com/api/v2/entry/patricia/image",
+    "name": "patricia"
+  }
+}</pre>
+            </div>
+        </div>
+    </div>
+    
 </section>
 {{ end }}

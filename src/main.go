@@ -4,7 +4,9 @@ import (
 	"fmt"
 	"groupie-tracker/packages/api"
 	"log"
+	"math/rand"
 	"net/http"
+	"time"
 
 	"github.com/gorilla/mux"
 )
@@ -13,6 +15,7 @@ func main() {
 	// !To uncomment before real launch
 	// Generates fallback files:
 	api.GenerateFallback(true, true)
+	rand.Seed(time.Now().UnixNano())
 
 	// Handlers router creation and static files:
 	r := mux.NewRouter()

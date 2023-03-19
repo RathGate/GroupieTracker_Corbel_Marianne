@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"reflect"
 	"sort"
+	"strconv"
 )
 
 type FullModeRequest struct {
@@ -211,4 +212,25 @@ func FlattenCreatureRequest(request CreaturesRequest) (resultArr []Item) {
 	}
 
 	return SortItemsByID(resultArr)
+}
+
+type EntryRequestSpecial struct {
+	ID       int
+	JSONData string
+	Template string
+	Entry    EntryRequest
+}
+
+func SpecialRequest(ID int) (result EntryRequestSpecial, err error) {
+	result.ID = ID
+
+	reqBody, status, err := utils.MakeRequest("https://botw-compendium.herokuapp.com/api/v2/entry/" + strconv.Itoa(ID))
+	// Error check:
+	if status != http.StatusOK || err != nil {
+		return result, utils.GenerateError(err, status)
+	}
+	result.JSONData = string(reqBody)
+
+	err = json.Unmarshal(reqBody, &result.Entry)
+	return result, err
 }
