@@ -4,11 +4,22 @@
     margin: auto;
     display: flex;
     flex-direction: column;
-    backdrop-filter: blur(5px);
-    border-radius: 5px;
+    background-color: rgba(0, 0, 0, .9);
+    border-radius: 10px;
     padding:  10px 25px 20px 25px;
     position: relative;
-    border: 1px solid rgba(255, 255, 255, 0.137);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);;
+}
+.data-view-container::before {
+    user-select: none;
+    height: calc(100% - 20px);
+    border-radius: 10px;
+    position: absolute;
+    width: calc(100% - 20px);
+    top: 9px;
+    left: 9px;
+    content: "";
+    border: 1px solid rgba(255, 255, 255, .1);
 }
 
 /* ?HEADER*/
@@ -32,6 +43,9 @@
 .data-upper, .data-lower {
     display: flex;
 }
+.data-lower {
+    margin-top: 20px;
+}
 
 /* Upper left: image */
 /* See `card-item.css` for the style on the image */
@@ -40,6 +54,9 @@
     flex-shrink: 0;
     display: flex;
     align-items: center;
+}
+.data-lower-left, .data-lower-right {
+    flex-direction: column;
 }
 .img-frame.active {
     opacity: 1;
@@ -53,6 +70,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    flex: 1;
 }
 
 /* Common elements */
@@ -60,6 +78,7 @@
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
+    width: 100%;
 }
 .single-title span {
     font-weight: initial;
@@ -89,7 +108,7 @@
     margin-top: 10px;
 }
 
-.item-drops .description-text {
+ .description-text.ct {
     flex-direction: row;
     gap: 15px;
     align-items: center;
@@ -99,10 +118,11 @@
     white-space: nowrap;
     flex-wrap: wrap;
     row-gap: 7px;
+    width: 100%;
 }
 
 .item-drops {
-    margin-top: 20px;
+
     width: 100%;
 }
 
@@ -114,7 +134,7 @@
     .description-text {
         font-size: 16px;
     }
-    .single-title {
+    .single-title span {
         font-size: 15px;
     }
 }
@@ -125,7 +145,7 @@
     .description-text {
         font-size: 15px;
     }
-    .single-title {
+    .single-title span {
         font-size: 14px;
     }
 }
@@ -140,7 +160,7 @@
         padding: 10px 0 15px;
 
     }
-    .data-upper-right {
+    .data-upper-right, .data-lower-right {
         padding-left: 0;
         gap: 15px;
     }
@@ -160,6 +180,24 @@
     .description-text p {
         width: fit-content;
     }
+    .data-lower {
+        flex-direction: column;
+        margin-top: 15px;
+        gap: 10px;
+    }
+    .data-lower-left, .data-lower-right {
+        width: 100%;
+        gap: 0;
+    }
+    .data-header {
+        font-size: 24px;
+    }
+    .description-text {
+        font-size: 15px;
+    }
+    .single-title span {
+        font-size: 16px;
+    }
 }
 
 @media screen and (max-width: 550px) {
@@ -169,7 +207,7 @@
     .description-text {
         font-size: 13px;
     }
-    .single-title {
-        font-size: 12px;
+    .single-title span {
+        font-size: 14px;
     }
 }

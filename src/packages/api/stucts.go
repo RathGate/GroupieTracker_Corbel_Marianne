@@ -33,6 +33,7 @@ type Item struct {
 	Category        string   `json:"category"`
 	CommonLocations []string `json:"common_locations"`
 	CookingEffect   string   `json:"cooking_effect"`
+	Defense         int      `json:"defense"`
 	Food            bool
 	HeartsRecovered float64  `json:"hearts_recovered"`
 	Description     string   `json:"description"`

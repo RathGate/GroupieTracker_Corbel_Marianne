@@ -51,7 +51,7 @@
         </div>
     </div>
     <div class="data-lower">
-        {{ if or (eq $value.Category "monsters") (eq $value.Category "treasures") (and (eq $value.Category "creatures") (not $value.Food))}}
+        {{ if or (eq $value.Category "monsters") (eq $value.Category "treasure") (and (eq $value.Category "creatures") (not $value.Food))}}
         <div class="item-drops">
             <div class="single-title">
                 <div class="title-deco neon-bg"></div>
@@ -59,7 +59,7 @@
                 <div class="title-deco neon-bg"></div>
             </div>
                 
-            <div class="description-text neon-italic-text">
+            <div class="description-text ct neon-italic-text">
                 
                 {{ if $value.Drops }}
                 {{ range $value.Drops }}
@@ -71,10 +71,34 @@
             </div>
         </div>
         {{ else if or ($value.Food) (eq $value.Category "materials") }}
-        <div class="data-lower-left">Uh</div>
-        <div class="data-lower-right">Ah</div>
+        <div class="data-lower-left">
+            <div class="single-title">
+                <div class="title-deco neon-bg"></div>
+                <span class="neon-italic-text">Hearts Recovered</span>
+                <div class="title-deco neon-bg"></div>
+            </div>
+            <div class="description-text ct neon-italic-text">{{ if not $value.HeartsRecovered}}No restorative effect{{ else }}{{$value.HeartsRecovered}}{{end}}</div>
+        </div>
+        <div class="data-lower-right"><div class="single-title">
+            <div class="title-deco neon-bg"></div>
+            <span class="neon-italic-text">Cooking Effect</span>
+            <div class="title-deco neon-bg"></div>
+        </div>
+        <div class="description-text ct neon-italic-text"><span>{{ if not $value.CookingEffect}}None{{ else }}{{$value.CookingEffect}}{{end}}</span></div>
+
+    </div>
         {{ else if eq $value.Category "equipment"}}
-        <div>Equipment</div>
+        <div class="data-lower-left">
+        </div>
+        <div class="data-lower-right"><div class="single-title">
+            <div class="title-deco neon-bg"></div>
+            <span class="neon-italic-text">Properties</span>
+            <div class="title-deco neon-bg"></div>
+        </div>
+        <div class="description-text ct neon-italic-text">
+            {{ if $value.Attack }}<span>Attack: {{$value.Attack}}</span>{{end}}
+            {{ if $value.Defense }}<span>Defense: {{$value.Defense}}</span>{{end}}
+    </div>
         {{ end }}
     </div>
 </div>
