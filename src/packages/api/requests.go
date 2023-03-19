@@ -129,6 +129,9 @@ func RequestSingleEntry(entryName string, mastermode bool) (Item, error) {
 		return Item{}, err
 	}
 
+	if result.Item.Category == "creatures" && result.Item.ID > 47 {
+		result.Item.Food = true
+	}
 	return result.Item, err
 }
 

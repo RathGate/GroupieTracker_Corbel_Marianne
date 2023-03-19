@@ -45,6 +45,7 @@
             </div>
         </div>
         <div class="data-lower">
+            {{ if or (eq .Category "monsters") (eq .Category "treasures") (and (eq .Category "creatures") (not .Food))}}
             <div class="item-drops">
                 <div class="single-title">
                     <div class="title-deco neon-bg"></div>
@@ -63,6 +64,12 @@
                 {{ end }}    
                 </div>
             </div>
+            {{ else if or (.Food) (eq .Category "materials") }}
+            <div class="data-lower-left">Uh</div>
+            <div class="data-lower-right">Ah</div>
+            {{ else if eq .Category "equipment"}}
+            <div>Equipment</div>
+            {{ end }}
         </div>
 
 

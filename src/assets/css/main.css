@@ -78,6 +78,12 @@ main {
     width: 100%;
 }
 
+.master-italic-text {
+    font-style: italic;
+    color: rgb(255, 73, 73);
+    text-shadow: 0px 0px 5px red;
+    font-weight: bold;
+}
 .neon-italic-text {
     font-style: italic;
     color: #7fe5ff;

@@ -29,13 +29,13 @@
 /* ?CONTENT */
 
 /* *Upper part: contains the image and a part of the info */
-.data-upper {
+.data-upper, .data-lower {
     display: flex;
 }
 
 /* Upper left: image */
 /* See `card-item.css` for the style on the image */
-.data-upper-left {
+.data-upper-left, .data-lower-left {
     width: 27%;
     flex-shrink: 0;
     display: flex;
@@ -48,7 +48,7 @@
 }
 
 /* Upper right: description and common locations */
-.data-upper-right {
+.data-upper-right, .data-lower-right {
     padding-left: 30px;
     display: flex;
     flex-direction: column;
@@ -103,6 +103,7 @@
 
 .item-drops {
     margin-top: 20px;
+    width: 100%;
 }
 
 /* !RESPONSIVE */

@@ -16,7 +16,13 @@
     max-width: 100%;
     display: block;
 }
-
+.section-doc {
+    height: fit-content;
+    padding-bottom:40px;
+    max-width: 1050px;
+    width: 100%;
+    margin: 0 auto;
+}
 .refresh {
     font-size: 15px;
     font-style: italic;
@@ -37,19 +43,36 @@
 
 .about  {
     width: 100%;
-    max-width: 1050px;
+
     margin: 0 auto;
 }
+.about.endpoints {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
 
-.about h1 {
+.section-doc h1 {
     font-family: "Hylia", sans-serif;
     font-weight: initial;
-    margin: 20px 0;
+    margin: 30px 0;
     font-size: 40px;
+    width: 100%;
+    align-items: center;
+}
+.section-doc h1 span {
+    width: fit-content;
+    padding: 0 20px;
+}
+.section-doc h2 {
+    font-weight: unset;
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 15px;
 }
 .about p {
     font-size: 17px;
-    /* margin: 0; */
+    margin: 0;
 }
 
 .code-block{
@@ -70,6 +93,7 @@
 .code-block-content span {
     word-wrap: break-word;       /* Internet Explorer 5.5+ */
 }
+
 pre{
     white-space: pre-wrap;       /* Since CSS 2.1 */
     white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
@@ -81,15 +105,31 @@ pre{
     font-family:  'Space Mono', monospace;;
 }
 
+.section-doc h1 {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+}
+.section-doc h1 div {
+    height: 2px;
+    width: 100%;
+    background-color: var(--color-beige);
+}
+
 @media screen and (max-width: 750px) {
     .about {
         max-width: 600px;
     }
-    .about h1 {
-        font-size: 35px;
+    .section-doc h1 {
+        font-size: 30px;
+    }
+    .section-doc h2 {
+        font-size: 18px;
     }
     .about p, .code-block-title, pre {
         font-size: 15px;
+    }
+    .about.about.endpoints {
+        gap: 30px;
     }
 }
 
@@ -97,13 +137,20 @@ pre{
     .refresh {
         font-size: 11px;
     }
-    .about h1 {
+    .section-doc h1 {
         font-size: 25px;
     }
     .about p, .code-block-title {
         font-size: 14px;
     }
+    .section-doc h2 {
+        font-size: 16px;
+    }
     .code-block-content span, pre {
         font-size: 13px;
     }
+    .section-doc {
+        padding-bottom: 40px;
+    }
 }
+

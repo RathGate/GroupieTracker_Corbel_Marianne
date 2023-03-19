@@ -2,7 +2,7 @@
 <div class="front-logo">
     <img src="/assets/img/indexLogo.png" alt="">
 </div>
-<section>
+<section class="section-doc">
     <div class="entry-item-container">
         <div class="item-to-replace">
             {{ template "single-page" .PerfectMatch }}
@@ -10,12 +10,12 @@
         <div class="refresh">Show me another one !!</div>
     </div>
     <div class="about">
-        <h1>About the API</h1>
+        <h1><div></div><span>About the API</span><div></div></h1>
         <p>Welcome to the Compendium Data Viewer, a tool that will help you visualize each and every entry of the bestiary from the game The Legend of Zelda: Breath of the Wild - directly on your computer or smartphone screen !</p>
         <p>This website uses <a href="https://github.com/gadhagod">Aarav Borthakur</a>'s <a href="https://github.com/gadhagod/Hyrule-Compendium-API">Hyrule Compendium API</a> as its main source of data. It stores the data of the 394 entries of the compendium, which are all the monsters, equipment, treasures, creatures and materials that you can find on the vast continent of Hyrule.</p>
     </div>
     <div class="about">
-        <h1>How to use the API</h1>
+        <h1><div></div><span>How to use the API</span><div></div></h1>
         <p>As the API doesn't require any key or token to send responses, a simple HTTP GET request suffices to receive data.</p>
 
         <div class="code-block">
@@ -28,22 +28,59 @@
         <div class="code-block">
             <span class="code-block-title">And here is what the API sent us back:</span>
             <div class="code-block-content">
-                <pre id="json-to-replace" >{
-  "data": {
-    "category": "creatures",
-    "common_locations": [
-      "Gerudo Desert"
-    ],
-    "description": "This is Riju's own sand seal. It may look intense, but she dotes on it regularly; the ribbon it wears was a gift form her, and it even has its own pen in Gerudo Town. It's far more agile than any other sand seal and far more outgoing. An ever-reliable partner to Riju, Patricia is always ready to take off through the desert at a moment's notice.",
-    "drops": [],
-    "id": 8,
-    "image": "https://botw-compendium.herokuapp.com/api/v2/entry/patricia/image",
-    "name": "patricia"
-  }
-}</pre>
+                <pre id="json-to-replace" ></pre>
             </div>
         </div>
     </div>
-    
+    <h1><div></div><span>Endpoints</span><div></div></h1>
+    <div class="about endpoints">
+        
+        <div class="endpoint">
+            <h2 class="neon-italic-text"> Single Entry</h2>
+            <div class="code-block">
+                <p>Retrieving a unique item can be done using the request mentionned above.</p>
+                <span class="code-block-title">Please note that you can specify the entry's name instead of its ID in the request</span>
+                <div class="code-block-content">
+                    <span>GET https://botw-compendium.herokuapp.com/api/v2/entry/moblin
+                </div>
+            </div>
+        </div>
+        <div class="endpoint">        
+            <h2 class="neon-italic-text"> All entries from a category</h2>
+            <div class="code-block">
+                <span class="code-block-title">In addition to the entry endpoint mentionned above, you can retrieve data from the API by their category ("monsters", "equipment", "materials", "creatures" and "treasures")</span>
+                <div class="code-block-content">
+                    <span>GET https://botw-compendium.herokuapp.com/api/v2/category/monsters
+                </div>
+            </div>
+        </div>
+        <div class="endpoint">
+            <h2 class="neon-italic-text"> All entries</h2>
+            <div class="code-block">
+                <span class="code-block-title">It is also possible to retrieve all 389 items using the following request:</span>
+                <div class="code-block-content">
+                    <span>GET https://botw-compendium.herokuapp.com/api/v2/all
+                </div>
+            </div>
+        </div>
+        <div class="endpoint">
+            <h2 class="master-italic-text"> Mastermode</h2>
+            <p>If you want to retrieve entries specific to the mastermode (golden enemies, for example), this must be done by slightly altering the URL Request.</p>
+            <div class="code-block">
+                <span class="code-block-title">To retrieve one entry exclusive to the mastermode:</span>
+                <div class="code-block-content">
+                    <span>GET https://botw-compendium.herokuapp.com/api/v2/master_mode/entry/golden_lynel
+                </div>
+            </div>
+            <div class="code-block">
+                <span class="code-block-title">To retrieve all items from the mastermode:</span>
+                <div class="code-block-content">
+                    <span>GET https://botw-compendium.herokuapp.com/api/v2/master_mode/all
+                </div>
+                <p>Please note that this endpoint will only retrieve all the entries relative to the mastermode and not the full mastermode compendium.</p>
+            </div>
+        </div>
+        <p>Enjoy browsing the Compendium ! ♪</p>
+    </div>
 </section>
 {{ end }}

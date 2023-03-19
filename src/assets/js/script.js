@@ -174,9 +174,12 @@ if (refreshBtn && parentDiv) {
             url: 'https://botw-compendium.herokuapp.com/api/v2/entry/' + randomInt,
             success: function(data) {
              document.querySelector("#json-to-replace").innerHTML = JSON.stringify(data, null, 2)
-        }});
-
-
-        
+        }}); 
     })
+}
+
+let jsonToReplace = document.querySelector("#json-to-replace")
+let initialData = {"data":{"category":"creatures","common_locations":["Gerudo Desert"],"description":"This is Riju's own sand seal. It may look intense, but she dotes on it regularly; the ribbon it wears was a gift form her, and it even has its own pen in Gerudo Town. It's far more agile than any other sand seal and far more outgoing. An ever-reliable partner to Riju, Patricia is always ready to take off through the desert at a moment's notice.","drops":[],"id":8,"image":"https://botw-compendium.herokuapp.com/api/v2/entry/patricia/image","name":"patricia"}}
+if (jsonToReplace) {
+    jsonToReplace.innerHTML = JSON.stringify(initialData, null, 2)
 }
