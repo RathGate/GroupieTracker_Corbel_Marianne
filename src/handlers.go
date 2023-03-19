@@ -11,6 +11,15 @@ import (
 	"github.com/gorilla/mux"
 )
 
+func debugHandler(w http.ResponseWriter, r *http.Request) {
+	request, _ := api.UseFallBack(true)
+
+	data := Data{ResultArr: request}
+	fmt.Println(data)
+	tmpl := generateTemplate("base.html", []string{"templates/base.html", "templates/views/debug.html", "templates/components/card-item-wide.html"})
+	tmpl.Execute(w, data)
+}
+
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 	data := Data{PageName: "Home"}
 
@@ -24,6 +33,9 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		request, err := api.RequestSingleEntry(randomID, false)
+
+		data.PerfectMatch = request
+
 		if err != nil {
 			// TODO: what fucking kind of error handler should I put here
 			fmt.Println("CAUTION: The API didn't answer correctly.")
@@ -31,7 +43,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 		// *Generates and executes templates:
 		tmpl := generateTemplate("", []string{"templates/components/entry-item.html"})
-		tmpl.ExecuteTemplate(w, "single-page", request)
+		tmpl.ExecuteTemplate(w, "single-page", data)
 		return
 	}
 
@@ -148,8 +160,8 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 		resultItems := api.ApplyFilters(filters)
 
 		// *Generates and executes templates:
-		tmpl := generateTemplate("", []string{"templates/components/card-item-container.html", "templates/components/card-item.html"})
-		tmpl.ExecuteTemplate(w, "card-container", resultItems)
+		tmpl := generateTemplate("", []string{"templates/components/card-item-wide.html"})
+		tmpl.ExecuteTemplate(w, "big-card-item", resultItems)
 		return
 	}
 
@@ -163,7 +175,7 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 	data.ResultArr = resultItems
 
 	// *Generates and executes templates:
-	tmpl := generateTemplate("base.html", []string{"templates/base.html", "templates/views/search.html", "templates/components/card-item.html"})
+	tmpl := generateTemplate("base.html", []string{"templates/base.html", "templates/views/search.html", "templates/components/card-item-wide.html"})
 	tmpl.Execute(w, data)
 }
 

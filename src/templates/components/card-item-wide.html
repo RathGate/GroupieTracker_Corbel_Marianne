@@ -1,0 +1,26 @@
+{{ define "big-card-item" }}
+
+    {{ range . }}
+    <a href="/item/{{ .ID }}{{ if .MasterExclusive }}?mode=master{{ end }}">
+    <div class="big-card-item">
+        <div class="big-card-header">
+            <div class="item-img-container">
+                <div class="item-img">
+                    <div class="sheikah-eye"><img  src="/assets/img/characters/sheikah_eye.png" alt=""></div>
+                    <img class="currimg" id="img_{{ if .DisplayMaster }}{{ .MasterID}}{{else}}{{ .ID }}{{end}}" onload="showImage(`img_{{ if .DisplayMaster }}{{ .MasterID}}{{else}}{{ .ID }}{{end}}`);" src="{{ .Image }}" alt="Image of a {{ . }}" >
+                </div>
+                <div class="img-frame"><img src="/assets/img/card-border.png" alt="Image decoration frame"></div>
+            </div>
+        </div>
+        <div class="big-card-main">
+            <div class="big-card-title">{{ if .DisplayMaster }}{{ addPaddingToNumber .MasterID}}{{else}}{{ addPaddingToNumber .ID }}{{end}} {{ .Name }}</div>
+            <div class="tags"><img class="tag-img" src="/assets/img/category_icons/{{.Category}}-beige.png" alt=""><div class="tag">{{ .Category }}</div></div>
+            <div class="big-card-description">{{ .Description }}</div>
+        </div>
+    </div>
+
+    </a>
+
+    {{ end }}
+
+{{ end }}

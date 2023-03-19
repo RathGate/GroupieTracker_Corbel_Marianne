@@ -1,77 +1,86 @@
 {{ define "single-page"}}
-    <div class="data-view-container">
-        <div class="data-header">
-            <div class="title">
-                {{ addPaddingToNumber .ID }} | {{.Name}}
+{{ $value := .PerfectMatch }}
+
+{{if eq .PageName "Home" }}
+<a href="/item/{{ $value.ID }}">
+{{ end }}
+
+<div class="data-view-container">
+    <div class="data-header">
+        <div class="title">
+            {{ addPaddingToNumber $value.ID }} | {{$value.Name}}
+        </div>
+    </div>
+    <div class="data-upper">
+        <div class="data-upper-left">
+            <div class="item-img-container">
+                <div class="item-img">
+                    <div class="sheikah-eye"><img  src="/assets/img/characters/sheikah_eye.png" alt="Sheikah Eye loading placeholder"></div>
+                    <img class="currimg" id="img_{{ $value.ID }}" onload="showImage(`img_{{ $value.ID }}`);" src="{{ $value.Image }}" alt="Image of a {{ $value.Name }}" >
+                </div>
+                <div class="img-frame active"><img src="/assets/img/card-border.png" alt="Image decoration frame"></div>
             </div>
         </div>
-        <div class="data-upper">
-            <div class="data-upper-left">
-                <div class="item-img-container">
-                    <div class="item-img">
-                        <div class="sheikah-eye"><img  src="/assets/img/characters/sheikah_eye.png" alt="Sheikah Eye loading placeholder"></div>
-                        <img class="currimg" id="img_{{ .ID }}" onload="showImage(`img_{{ .ID }}`);" src="{{ .Image }}" alt="Image of a {{ .Name }}" >
-                    </div>
-                    <div class="img-frame active"><img src="/assets/img/card-border.png" alt="Image decoration frame"></div>
-                </div>
-            </div>
-            <div class="data-upper-right">
-                <div class="item-description">
-                    <div class="single-title">
-                        <div class="title-deco neon-bg"></div>
-                        <h2 class="neon-italic-text">Description</h2>
-                        <div class="title-deco neon-bg"></div>
-                    </div>
-                        
-                    <div class="description-text neon-italic-text">{{.Description}}</div>
-                </div>
-                <div class="item-locations">
-                    <div class="single-title">
-                        <div class="title-deco neon-bg"></div>
-                        <h2 class="neon-italic-text">Common Locations</h2>
-                        <div class="title-deco neon-bg"></div>
-                    </div>
-                        
-                    <div class="description-text neon-italic-text">
-                        {{ if .CommonLocations }}
-                            {{ range .CommonLocations }}
-                            <p>{{ . }}</p>
-                            {{end }}
-                        {{ else }}
-                        None
-                        {{ end }}         
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="data-lower">
-            {{ if or (eq .Category "monsters") (eq .Category "treasures") (and (eq .Category "creatures") (not .Food))}}
-            <div class="item-drops">
+        <div class="data-upper-right">
+            <div class="item-description">
                 <div class="single-title">
                     <div class="title-deco neon-bg"></div>
-                    <h2 class="neon-italic-text">Recoverable Materials</h2>
+                    <span class="neon-italic-text">Description</span>
+                    <div class="title-deco neon-bg"></div>
+                </div>
+                    
+                <div class="description-text neon-italic-text">{{$value.Description}}</div>
+            </div>
+            <div class="item-locations">
+                <div class="single-title">
+                    <div class="title-deco neon-bg"></div>
+                    <span class="neon-italic-text">Common Locations</span>
                     <div class="title-deco neon-bg"></div>
                 </div>
                     
                 <div class="description-text neon-italic-text">
-                    
-                    {{ if .Drops }}
-                    {{ range .Drops }}
-                    <div>{{ . }}</div>
-                    {{end }}
-                {{ else }}
-                <div class="none">None</div>
-                {{ end }}    
+                    {{ if $value.CommonLocations }}
+                        {{ range $value.CommonLocations }}
+                        <p>{{ . }}</p>
+                        {{end }}
+                    {{ else }}
+                    None
+                    {{ end }}         
                 </div>
             </div>
-            {{ else if or (.Food) (eq .Category "materials") }}
-            <div class="data-lower-left">Uh</div>
-            <div class="data-lower-right">Ah</div>
-            {{ else if eq .Category "equipment"}}
-            <div>Equipment</div>
-            {{ end }}
         </div>
-
-
     </div>
+    <div class="data-lower">
+        {{ if or (eq $value.Category "monsters") (eq $value.Category "treasures") (and (eq $value.Category "creatures") (not $value.Food))}}
+        <div class="item-drops">
+            <div class="single-title">
+                <div class="title-deco neon-bg"></div>
+                <span class="neon-italic-text">Recoverable Materials</span>
+                <div class="title-deco neon-bg"></div>
+            </div>
+                
+            <div class="description-text neon-italic-text">
+                
+                {{ if $value.Drops }}
+                {{ range $value.Drops }}
+                <div>{{ . }}</div>
+                {{end }}
+            {{ else }}
+            <div class="none">None</div>
+            {{ end }}    
+            </div>
+        </div>
+        {{ else if or ($value.Food) (eq $value.Category "materials") }}
+        <div class="data-lower-left">Uh</div>
+        <div class="data-lower-right">Ah</div>
+        {{ else if eq $value.Category "equipment"}}
+        <div>Equipment</div>
+        {{ end }}
+    </div>
+</div>
+
+{{ if eq .PageName "Home"}}
+</a>
+{{ end}}
+
 {{ end }}

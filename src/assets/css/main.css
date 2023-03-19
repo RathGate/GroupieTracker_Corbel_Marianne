@@ -8,6 +8,7 @@
 @import url(categories.css);
 @import url(index.css);
 @import url(404.css);
+@import url(card-item-wide.css);
 
 @font-face {
     font-family: "Hylia";
@@ -94,48 +95,58 @@ main {
     box-shadow: 0px 0px 4px cyan;
 }
 
-/* .card-item {
-    height: 150px;
-    max-height: 150px;
-    width: 590px;
-    height: fit-content;
-    border-radius: 15px;
+.big-card-item {
+    max-width: 650px;
+    aspect-ratio: 100/27;
     overflow:hidden;
     display: flex;
-    background-color: rgba(255, 255, 255, .01);
-    border: 2px solid #38b6f1;
-    box-shadow: 0px 0px 15px #38b6f17c;
+    gap: 3px;
+    background-color: rgba(0, 0, 0, .2);
 
 }
-.card-header {
-    width: 150px;
+.big-card-header {
+    width: 27%;
     aspect-ratio: 1;
     display: block;
     overflow: hidden;
     flex-shrink: 0;
 }
-.card-header img {
+.big-card-header img {
     max-height: 100%;
     height: 100%;
     width: 100%; 
 }
-.card-main {
+.big-card-main {
     padding: 10px 15px;
     display: flex;
     flex-direction: column;
     gap: 5px;
+    border: 1px solid #878787;
+    border-left: none;
+    padding-top: 17px;
 }
-.card-title {
+.big-card-title {
     text-transform: uppercase;
-    font-size: 22px;
+    font-size: 20px;
     letter-spacing: 1px;
+    margin-bottom: 7px;
+    position: relative;
 }
-.card-tags-container {
+.big-card-title::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #878787;
+}
+.big-card-tags-container {
     display: flex;
     gap: 5px;
     margin-bottom: 5px;
 }
-.card-tag-item {
+.big-card-tag-item {
     padding: 0 3px 1px 3px;
     border-radius: 3px;
     color: black;
@@ -144,16 +155,47 @@ main {
     font-weight: bold;
     letter-spacing: 1px;
 }
-.card-description { 
+.big-card-description { 
     display: -webkit-box;
     max-width: 100%;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    font-size: 14px;
+    font-size: 15px;
     font-style: italic;
     opacity: .75;
-} */
+    max-height: 60px;
+    margin-top: 5px;
+}
+.container {
+    max-width: 1380px;
+    width: 100%;
+    padding: 25px;
+    display: flex;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 auto;
+    row-gap: 20px;
+}
+.tags {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.tag {
+    text-transform: capitalize;
+    font-size: 14px;
+    border: 1px solid #87878781;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+    border-radius: 3px;
+}
+.tag-img {
+    height: 20px;
+}
 
 section {
     width: 100%;
@@ -193,16 +235,179 @@ h1{
     font-family: "Sheikah", sans-serif;
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 1380px) {
+    .big-card-item {
+        max-width: 590px;
+    }
+    .container {
+        max-width: 1250px;
+    }
+}
+
+@media screen and (max-width: 1250px) {
+    .big-card-item {
+        max-width: 455px;
+    }
+    .container {
+        max-width: 950px;
+    }
+    .big-card-title {
+        font-size: 15px;
+    }
+    .tags {
+        gap: 7px;
+    }
+    .tag-img {
+        height: 15px;
+    }
+    .tag {
+        height: 20px;
+        font-size: 12px
+    }
+    .big-card-description {
+        font-size: 13px;
+        max-height: 40px;
+        margin-top: 1px;
+        -webkit-line-clamp: 2;
+    }
+    .big-card-main {
+        padding: 10px;
+    }
+    .container {
+        padding: 10px;
+        row-gap: 10px;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    .big-card-item {
+        max-width: 600px;
+        width: 100%;
+    }
+    .container {
+        flex-direction: column;
+        padding: 25px;
+        max-width: 600px;
+        flex-wrap: nowrap;
+    }
+    .big-card-main {
+        padding: 10px 15px;
+    }
+    .big-card-title {
+        font-size: 18px;
+    }
+    .tag-img {
+        height: 18px;
+    }
+    .tag {
+        height: 23px;
+        font-size: 13px
+    }
+    .big-card-description {
+        margin-top: 3px;
+        -webkit-line-clamp: 3;
+        max-height: 55px;
+    }
+}
+@media screen and (max-width: 750px) {
     main {
         padding-top: 60px;
     }
-    /* section {
-        padding-top: 30px;
-        padding-bottom: 30px;
-    } */
 }
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 610px) {
+    .container {
+        padding: 10px;
+    }
+    .big-card-title {
+        font-size: 15px;
+    }
+    .tags {
+        gap: 7px;
+    }
+    .tag-img {
+        height: 15px;
+    }
+    .tag {
+        height: 20px;
+        font-size: 12px
+    }
+    .big-card-description {
+        margin-top: 3px;
+        -webkit-line-clamp: 3;
+        max-height: 55px;
+    }
+}
+@media screen and (max-width: 530px) {
+
+    .big-card-title {
+        font-size: 15px;
+    }
+    .tags {
+        gap: 7px;
+    }
+    .tag-img {
+        height: 15px;
+    }
+    .tag {
+        height: 20px;
+        font-size: 12px
+    }
+    .big-card-description {
+        -webkit-line-clamp: 2;
+    }
+}
+@media screen and (max-width:460px) {
+    .container {
+        width: 100%;
+
+    }
+    .big-card-title {
+        font-size: 14px;
+    }
+    .big-card-item {
+        width: 100%;
+        height: 120px;
+        aspect-ratio: unset;
+    }
+    .big-card-main {
+        padding: 10px;
+        font-size: 13px;
+    }
+    .tags {
+        gap: 5px;
+    }
+    .tag-img {
+        height: 11px;
+    }
+    .tag {
+        height: 15px;
+        font-size: 10px
+    }
+    .big-card-description {
+        font-size: 11px;
+        margin-top: 1px;
+        -webkit-line-clamp: 3;
+        max-height: 55px;
+    }
+    .big-card-header {
+        width: auto;
+        height: 100%;
+        aspect-ratio: 1;
+    }
+}
+@media screen and (max-width: 310px) {
+    .big-card-item {
+        height: 100px;
+    }
+    .big-card-main {
+        padding-top: 5px;
+    }
+    .big-card-description {
+        font-size: 11px;
+        margin-top: 1px;
+        -webkit-line-clamp: 2;
+        max-height: 55px;
+    }
     section {
         padding-top: 30px;
         padding-bottom: 30px;

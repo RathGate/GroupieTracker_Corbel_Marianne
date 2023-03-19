@@ -28,14 +28,14 @@
     font-style: italic;
     letter-spacing: 1px;
     text-transform: uppercase;
-    display: flex;
-    justify-content: flex-end;
+    margin-left: auto;
     position: relative;
     right: 3px;
     padding: 5px 0;
     opacity: .7;
     transition: opacity .2s ease;
     cursor: pointer;
+    width: fit-content;
 }
 .refresh:hover {
     opacity: 1;

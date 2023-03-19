@@ -89,8 +89,12 @@ if (form) {
             url: "/search",
             data: $("#search-form").serialize(),
             success: function(data) {
-                document.querySelector(".cards-container").innerHTML = data
+                console.log(data)
+                document.querySelector(".container").innerHTML = data
                 currentPageIndex = 0
+            },
+            error: function() {
+                console.log("nope")
             }
         })
     })

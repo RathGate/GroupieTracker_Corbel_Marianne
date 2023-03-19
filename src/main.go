@@ -26,6 +26,7 @@ func main() {
 	r.HandleFunc("/item/{id}", itemHandler)
 	r.HandleFunc("/search", searchHandler)
 	r.HandleFunc("/categories", categoriesHandler)
+	r.HandleFunc("/debug", debugHandler)
 	r.NotFoundHandler = http.HandlerFunc(notFoundHandler)
 
 	// Launches the server:

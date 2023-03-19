@@ -51,10 +51,8 @@
     {{ end }}
     {{ if .ResultArr }}
     <h1>All results</h1>
-    <div class="cards-container">
-        {{ range .ResultArr}}
-            {{ template "card" . }}
-        {{ end }}
+    <div class="container">
+        {{ template "big-card-item" .ResultArr}}
     </div>
     {{ end }}
 </section>
