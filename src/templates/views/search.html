@@ -1,5 +1,5 @@
 {{ define "main"}}
-<section>
+<section class="section-search">
     <div class="request-form">
         <form action="/search" method="GET" id="search-form">
             <div class="search-bar">
@@ -43,14 +43,8 @@
             </div>
         </form>
     </div>
-    {{ if ne .PerfectMatch.Name ""}}
-    <h1>Perfect match</h1>
-    <div class="cards-container">
-        {{ template "card" .PerfectMatch }}
-    </div>
-    {{ end }}
+    <h1 class="title-decorated"><div></div><span>Search Results</span><div></div></h1>
     {{ if .ResultArr }}
-    <h1>All results</h1>
     <div class="container">
         {{ template "big-card-item" .ResultArr}}
     </div>

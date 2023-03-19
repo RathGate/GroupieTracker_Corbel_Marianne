@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="big-card-main">
-            <div class="big-card-title">{{ if .DisplayMaster }}{{ addPaddingToNumber .MasterID}}{{else}}{{ addPaddingToNumber .ID }}{{end}} {{ .Name }}</div>
+            <div class="big-card-title"><span>{{ if .DisplayMaster }}{{ addPaddingToNumber .MasterID}}{{else}}{{ addPaddingToNumber .ID }}{{end}} {{ .Name }}</span></div>
             <div class="tags"><img class="tag-img" src="/assets/img/category_icons/{{.Category}}-beige.png" alt=""><div class="tag">{{ .Category }}</div></div>
             <div class="big-card-description">{{ .Description }}</div>
         </div>

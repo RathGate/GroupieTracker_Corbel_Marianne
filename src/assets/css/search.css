@@ -330,3 +330,7 @@
         gap: 5px;
     }
 }
+
+.section-search h1  {
+    margin-top: 0;
+}
