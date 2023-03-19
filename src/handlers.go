@@ -11,15 +11,6 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func debugHandler(w http.ResponseWriter, r *http.Request) {
-	request, _ := api.UseFallBack(true)
-
-	data := Data{ResultArr: request}
-	fmt.Println(data)
-	tmpl := generateTemplate("base.html", []string{"templates/base.html", "templates/views/debug.html", "templates/components/card-item-wide.html"})
-	tmpl.Execute(w, data)
-}
-
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 	data := Data{PageName: "Home"}
 
@@ -159,9 +150,14 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 		// Generates the results based on the filters:
 		resultItems := api.ApplyFilters(filters)
 
-		// *Generates and executes templates:
-		tmpl := generateTemplate("", []string{"templates/components/card-item-wide.html"})
-		tmpl.ExecuteTemplate(w, "big-card-item", resultItems)
+		if len(resultItems) > 0 {
+			// *Generates and executes templates:
+			tmpl := generateTemplate("", []string{"templates/components/card-item-wide.html"})
+			tmpl.ExecuteTemplate(w, "big-card-item", resultItems)
+			return
+		}
+		tmpl := generateTemplate("", []string{"templates/components/noresult.html"})
+		tmpl.ExecuteTemplate(w, "no-result", resultItems)
 		return
 	}
 

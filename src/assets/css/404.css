@@ -43,7 +43,7 @@ section.section-404 {
     font-style: italic;
 }
 
-.hihi {
+.not-found-popup {
     width: fit-content;
     padding: 20px 20px 8px 20px;
     background-color: rgba(0, 0, 0, .9);
@@ -53,10 +53,14 @@ section.section-404 {
     display: flex;
     flex-direction: column;
     width: 660px;
-    margin: 0 auto;
-    margin-top: 120px;
     
 }
+.not-found-content .not-found-popup {
+    margin: 0 auto;
+    margin-top: 120px;
+}
+
+
 .not-found-title {
     position: relative;
     margin-bottom: 20px;
@@ -134,7 +138,7 @@ letter-spacing: 1px;
     }
 }
 @media screen and (max-width: 750px) {
-    .hihi {
+    .not-found-popup {
         width: 100%;
         max-width: 660px;
         min-height: 175px;
@@ -150,7 +154,7 @@ letter-spacing: 1px;
     }
 }
 @media screen and (max-width: 750px) {
-    .hihi {
+    .not-found-popup {
         padding: 20px 8px 8px 8px;
     }
     .not-found-content {
