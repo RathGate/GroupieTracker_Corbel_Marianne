@@ -76,17 +76,18 @@ func IsInRegion(areas []string, allregions map[string][]string, item Item) bool 
 	return false
 }
 
-func ApplyFilters(filters Filters) (result []Item) {
+func ApplyFilters(filters Filters, usefallback bool) (result []Item) {
 	allregions, _ := LoadPlaceNames()
 
 	var allitems []Item
 	var err error
 
-	if filters.MasterMode {
-		allitems, _ = UseFallBack(true)
-	} else {
-		allitems, err = UseFallBack(false)
-	}
+	allitems, err = RetrieveInitialSearchData(filters.MasterMode, usefallback)
+	// if filters.MasterMode {
+	// 	allitems, _ = UseFallBack(true)
+	// } else {
+	// 	allitems, err = UseFallBack(false)
+	// }
 	// Error check:
 	if err != nil {
 		fmt.Println(err)
@@ -101,4 +102,15 @@ func ApplyFilters(filters Filters) (result []Item) {
 	}
 
 	return result
+}
+
+func RetrieveInitialSearchData(mastermode bool, usefallback bool) (result []Item, err error) {
+	if usefallback {
+		return UseFallBack(mastermode)
+	}
+	allResult, err := RequestAllEntries(mastermode)
+	if mastermode {
+		return allResult.MasterMode, err
+	}
+	return allResult.NormalMode, err
 }

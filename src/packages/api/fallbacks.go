@@ -64,6 +64,11 @@ func GenerateFallback(normalmode bool, mastermode bool) error {
 
 // Uses the fallback files instead of doing another request.
 func UseFallBack(mastermode bool) (result []Item, err error) {
+	if mastermode {
+		fmt.Println("Request /master_mode/all : using fallback files to retrieve initial search data.")
+	} else {
+		fmt.Println("Request /all : using fallback files to retrieve initial search data.")
+	}
 	var filename string
 
 	if mastermode {

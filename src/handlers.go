@@ -148,7 +148,7 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 		filters := api.FormToFilter(r.Form)
 
 		// Generates the results based on the filters:
-		resultItems := api.ApplyFilters(filters)
+		resultItems := api.ApplyFilters(filters, USEFALLBACK)
 
 		if len(resultItems) > 0 {
 			// *Generates and executes templates:
@@ -162,7 +162,7 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// ?User came here by "GET" method:
-	resultItems, err := api.UseFallBack(false)
+	resultItems, err := api.RetrieveInitialSearchData(false, USEFALLBACK)
 	// Error check
 	if err != nil {
 		fmt.Println("Someting went wrong with the fallback files.")

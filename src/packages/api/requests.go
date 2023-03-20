@@ -2,6 +2,7 @@ package api
 
 import (
 	"encoding/json"
+	"fmt"
 	"groupie-tracker/packages/utils"
 	"net/http"
 	"reflect"
@@ -17,6 +18,7 @@ type FullModeRequest struct {
 // Sends requests to /all and/or /master_mode/all,
 // processes and sorts the data as well.
 func RequestAllEntries(mastermode bool) (result FullModeRequest, err error) {
+	fmt.Println("Request /all : sending request to API.")
 	var normalResponse FullRequest
 
 	reqBody, status, err := utils.MakeRequest("https://botw-compendium.herokuapp.com/api/v2/all")
@@ -52,7 +54,7 @@ func RequestMastermodeEntries(baseEntries []Item) (result []Item, err error) {
 	}
 
 	var masterResponse CategoryRequest
-
+	fmt.Println("Request /master_mode/all : sending request to API.")
 	reqBody, status, err := utils.MakeRequest("https://botw-compendium.herokuapp.com/api/v2/master_mode/all")
 	// Error check:
 	if status != http.StatusOK || err != nil {
@@ -72,6 +74,7 @@ func RequestMastermodeEntries(baseEntries []Item) (result []Item, err error) {
 // Sends requests to /category/{categoryName},
 // processes and sorts the data as well.
 func RequestEntriesByCategory(categoryName string) ([]Item, error) {
+	fmt.Printf("Request /category/%v : sending request to API.\n", categoryName)
 	reqBody, status, err := utils.MakeRequest("https://botw-compendium.herokuapp.com/api/v2/category/" + categoryName)
 	// Error check:
 	if status != http.StatusOK || err != nil {
@@ -106,7 +109,7 @@ func RequestEntriesByCategory(categoryName string) ([]Item, error) {
 //
 //	depending on if `mastermode` is true of not.
 func RequestSingleEntry(entryName string, mastermode bool) (Item, error) {
-
+	fmt.Printf("Request /entry/%v : sending request to API.\n", entryName)
 	// Formats the URL according to the chosen mode:
 	var requestURL string
 	if mastermode {

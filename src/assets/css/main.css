@@ -103,7 +103,6 @@ main {
     display: flex;
     gap: 3px;
     background-color: rgba(0, 0, 0, .5);
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);;
     border-radius: 0 5px 5px 0;
 
 }
@@ -155,6 +154,7 @@ main {
     display: block;
     width: 100%;
     overflow: hidden;
+    transition: .2s text-shadow ease;
 }
 .big-card-title::after {
     content: "";
@@ -222,6 +222,15 @@ main {
 }
 .container a {
     overflow-x: hidden;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+.container a:hover .img-frame {
+    opacity: 1;
+    box-shadow: 0px 0px 5px cyan;
+    filter: none;
+}
+.container a:hover .big-card-title {
+    text-shadow: 0 0 5px var(--color-beige);
 }
 .container .not-found-popup .left {
     height: 100%;
