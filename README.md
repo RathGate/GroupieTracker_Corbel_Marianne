@@ -15,6 +15,8 @@ The website has two major features: displaying all the entries just like the gam
 -   Front-end: HTML, CSS, JS + JQuery
 -   API used:  [Hyrule Compendium API](https://gadhagod.github.io/Hyrule-Compendium-API/#/)
 
+By default and to improve reactivity, the program stores a copy of the processed API data on server launch, notably used for search queries. It is possible to disable that feature by changing the boolean value of the variable `USEFALLBACK` at the top of the `main.go` file.
+
 **COMPATIBILITY:** The website has been entirely tested on the latest versions of Chrome, Firefox and Edge. It should also appear responsive on Chrome, Safari and Firefox mobile browsers !
 
 ## How to use the program
