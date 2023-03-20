@@ -1,4 +1,6 @@
 tmp/
 .vscode/
-src/data/all_mastermode.json
+
+
 src/data/all_normalmode.json
+src/data/all_mastermode.json
