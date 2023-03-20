@@ -1,6 +1,11 @@
+.section-compendium h1 {
+    max-width: 100%;
+    margin: 15px 0;
+}
+
 .cat-icon-container {
     padding: 20px 0;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
     display: flex;
     gap: 10px;
     border-bottom: 1px solid rgba(0, 255, 255, 0.37);
@@ -84,6 +89,12 @@
     .cat-title {
         display: none;
     }
+    .cat-icon-container{
+        margin-bottom: 30px;
+    }
+    .section-compendium h1 {
+        margin-bottom: 10px;
+    }
 }
 
 @media screen and (max-width: 350px) {
@@ -92,5 +103,8 @@
     }
     .cat-logo {
         height: 35px !important;
+    }
+    .section-compendium h1 span {
+        width: min-content;
     }
 }

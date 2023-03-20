@@ -311,9 +311,6 @@ h1{
 .big-card-item {
     height: 160px;
 }
-.title-decorated {
-    max-width: 600px;
-}
 .big-card-main {
     padding: 15px;
 }
@@ -339,7 +336,14 @@ h1{
 
 @media screen and (max-width: 950px) {
     .container {
-        grid-template-columns: 1fr
+        grid-template-columns: 1fr;
+        place-items: center;
+    }
+    .section-search h1 {
+        max-width: 650px;
+    }
+    .container a {
+        width: fit-content;
     }
     .big-card-item {
         margin: auto;
@@ -354,7 +358,7 @@ h1{
         position: static;
     }
 }
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 550px) {
     main {
         padding-top: 60px;
     }
