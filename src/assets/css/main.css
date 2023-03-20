@@ -340,7 +340,7 @@ h1{
         place-items: center;
     }
     .section-search h1 {
-        max-width: 650px;
+        max-width: 750px;
     }
     .container a {
         width: fit-content;
