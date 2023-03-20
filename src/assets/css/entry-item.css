@@ -1,3 +1,10 @@
+.section-entry h1 {
+    max-width: 1050px;
+}
+.section-entry, .section-compendium, .section-search {
+    padding-bottom: 80px;
+}
+
 .data-view-container {
     width: 100%;
     max-width: 1050px;
@@ -198,6 +205,9 @@
     .single-title span {
         font-size: 16px;
     }
+    .section-entry, .section-compendium, .section-search {
+        padding-bottom: 50px;
+    }
 }
 
 @media screen and (max-width: 550px) {
@@ -209,5 +219,8 @@
     }
     .single-title span {
         font-size: 14px;
+    }
+    .section-entry, .section-compendium, .section-search {
+        padding-bottom: 30px;
     }
 }

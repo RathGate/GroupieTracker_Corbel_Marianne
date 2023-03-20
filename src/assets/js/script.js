@@ -24,9 +24,6 @@ function removeClassFromAll(divArr, className) {
     })
 }
 
-let currentPageIndex = 0
-
-
 // ?CATEGORIES PAGE:
 
 // Switches the current category on click (category page only)
@@ -53,27 +50,6 @@ function switchCategories() {
 }
 switchCategories()
 
-
-// ?CARDS TEMPLATE
-let cards = document.querySelectorAll(".card-item")
-if (cards) {
-    cards.forEach(card => {
-        let id = card.querySelector(".item-id").innerHTML
-        card.addEventListener("click", function() {
-            $.ajax({
-                type: "POST",
-                url: "/categories",
-                data: { "item-id":  id},
-                success: function(data) {
-                    console.log("oui")
-                    // document.getElementById("test").innerHTML = data
-                    console.log(data)
-                }
-            })
-        })
-    })
-}
-
 // ?SEARCH PAGE - Form
 let form = document.getElementById("search-form")
 if (form) {
@@ -89,13 +65,8 @@ if (form) {
             url: "/search",
             data: $("#search-form").serialize(),
             success: function(data) {
-                console.log(data)
                 document.querySelector(".container").innerHTML = data
-                currentPageIndex = 0
             },
-            error: function() {
-                console.log("nope")
-            }
         })
     })
 }
@@ -170,14 +141,13 @@ if (refreshBtn && parentDiv) {
             url: "/",
             data: {"retrieveNew": randomInt},
             success: function(template) {
-                
                 parentDiv.innerHTML = template
                 document.querySelector("#id-to-replace").innerHTML = randomInt
             }})
         $.ajax({
             url: 'https://botw-compendium.herokuapp.com/api/v2/entry/' + randomInt,
             success: function(data) {
-             document.querySelector("#json-to-replace").innerHTML = JSON.stringify(data, null, 2)
+                document.querySelector("#json-to-replace").innerHTML = JSON.stringify(data, null, 2)
         }}); 
     })
 }

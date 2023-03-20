@@ -8,9 +8,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px 0 40px;
     max-width: 750px;
     width: 100%;
+    margin: 50px 0;
+    overflow: hidden;
 }
 
 .request-form form  {
@@ -265,6 +266,12 @@
 }
 
 /* !RESPONSIVE */
+
+@media screen and (max-width: 950px) {
+    .request-form{
+        margin: 30px 0;
+    }
+}
 
 @media screen and (max-width: 750px) {
     :root {

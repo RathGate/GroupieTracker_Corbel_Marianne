@@ -1,6 +1,10 @@
 .section-compendium h1 {
     max-width: 100%;
-    margin: 15px 0;
+    margin: 20px 0;
+}
+
+.entry-section h1{
+    margin: 20px 0;
 }
 
 .cat-icon-container {
