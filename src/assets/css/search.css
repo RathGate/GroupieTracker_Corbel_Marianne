@@ -11,7 +11,6 @@
     max-width: 750px;
     width: 100%;
     margin: 50px 0;
-    overflow: hidden;
 }
 
 .request-form form  {
@@ -320,7 +319,7 @@
     }
 }
 
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 310px) {
     .filter-options-container {
         right: auto;
         left: 0;
