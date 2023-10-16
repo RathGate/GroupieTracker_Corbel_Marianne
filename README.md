@@ -1,6 +1,6 @@
 # COMPENDIUM DATA VIEWER
 
-This project has been entirely designed and coded by [Marianne Corbel](https://github.com/RathGate) as part of the "Groupie Tracker" course from Ynov Aix. The goal of the exercice is to realise a website displaying data received from an external API, and to be able to make different requests to that API from the website itself.
+The goal of the exercice is to realise a website displaying data received from an external API, and to be able to make different requests to that API from the website itself.
 
 ## About
 The Compendium Data Viewer uses [Aarav Borthakur](https://github.com/gadhagod)'s [Hyrule Compendium API](https://gadhagod.github.io/Hyrule-Compendium-API/#/), which provides the data of all the entries from the bestiary of the game The Legend of Zelda: Breath of the Wild.
@@ -23,7 +23,7 @@ By default and to improve reactivity, the program stores a copy of the processed
 
 As this project includes a server, it is not hosted (at least yet). In order to use it, you must clone the repo with
 
-    git clone https://github.com/RathGate/GroupieTracker_Corbel_Marianne
+    git clone https://github.com/RathGate/Hyrule-Compendium-Data-Viewer
 
 Then, you must open a terminal in the **src/** folder, at the root of the project, and use the following command to launch the server :
 
