@@ -9,7 +9,7 @@ The Compendium Data Viewer uses [Aarav Borthakur](https://github.com/gadhagod)'s
 
 The website has two major features: displaying all the entries just like the game goes (by category), and search for specific entries with more precise filters like name, item type, location and gamemode.
 
-![Page /search from the Compendium Data Viewer](https://media.discordapp.net/attachments/1001959681004163103/1086648904340222003/image.png)
+![Extract from page /home of the Compendium Data Viewer](https://i.ibb.co/Lr4Cjb5/Capture-d-cran-2024-09-20-132807.png)
 
 ## Technical Specifications
 
@@ -34,3 +34,5 @@ Then, you must open a terminal in the **src/** folder, at the root of the projec
 The website should now be available on `localhost:8080` . If not, or in case of a port collision, feel free to change the `preferredPort` variable, at the end of the `main.go` file, with a port that is more convenient to you.
 
 Enjoy ! ♫
+
+![Extract from page /search of the Compendium Data Viewer](https://i.ibb.co/ThxwYQY/Capture-d-cran-2024-09-20-133057.png)
