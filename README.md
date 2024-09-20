@@ -9,7 +9,7 @@ The Compendium Data Viewer uses [Aarav Borthakur](https://github.com/gadhagod)'s
 
 The website has two major features: displaying all the entries just like the game goes (by category), and search for specific entries with more precise filters like name, item type, location and gamemode.
 
-![Extract from page /home of the Compendium Data Viewer](https://i.ibb.co/Lr4Cjb5/Capture-d-cran-2024-09-20-132807.png)
+![Extract from page /home of the Compendium Data Viewer](https://i.ibb.co/FXGBZNV/Capture-d-cran-2024-09-20-132807.png)
 
 ## Technical Specifications
 
@@ -35,4 +35,4 @@ The website should now be available on `localhost:8080` . If not, or in case of 
 
 Enjoy ! ♫
 
-![Extract from page /search of the Compendium Data Viewer](https://i.ibb.co/ThxwYQY/Capture-d-cran-2024-09-20-133057.png)
+![Extract from page /search of the Compendium Data Viewer](https://i.ibb.co/2K1FWzW/Capture-d-cran-2024-09-20-133057.png)
