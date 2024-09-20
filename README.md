@@ -2,6 +2,8 @@
 
 The goal of the exercice is to realise a website displaying data received from an external API, and to be able to make different requests to that API from the website itself.
 
+Don't want to download golang only to see this project ? A demo is available [HERE](https://youtu.be/TPtTBSFEf1Y) !
+
 ## About
 The Compendium Data Viewer uses [Aarav Borthakur](https://github.com/gadhagod)'s [Hyrule Compendium API](https://gadhagod.github.io/Hyrule-Compendium-API/#/), which provides the data of all the entries from the bestiary of the game The Legend of Zelda: Breath of the Wild.
 
